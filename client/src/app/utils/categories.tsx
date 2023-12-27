@@ -2,7 +2,7 @@ import { GiFruitTree, GiChickenOven, GiBeerBottle, GiBowlOfRice } from "react-ic
 import { MdOutlineIcecream } from "react-icons/md";
 import {FaFish} from "react-icons/fa";
 
-export const categories = [
+export const Categories = [
     {
         id: 1,
         name: "Chicken",

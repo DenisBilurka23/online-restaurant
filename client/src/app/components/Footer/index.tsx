@@ -11,6 +11,7 @@ import { Logo } from "../Assets";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import MotionImg from "@/app/components/MotionImg";
 
 const Footer = () => {
   return (
@@ -18,14 +19,14 @@ const Footer = () => {
       <div className="flex justify-center md:justify-start items-center">
         <motion.div  whileHover={{ rotate: [0, -10, 10, -10, 0] }} className="mb-3 md:mb-0">
           <Link href="/" className="flex gap-8 items-center">
-            <motion.img
+            <MotionImg
               whileHover={{ rotate: [0, -10, 10, -10, 0] }}
               src={Logo}
               className="w-10 md:w-36 object-contain"
               alt="Logo"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-headingColor">
-              Online Restaurant
+              Bentilzone
             </span>
           </Link>
         </motion.div>
@@ -37,7 +38,7 @@ const Footer = () => {
             {
               new Date().getFullYear()
             }    
-           All Rights Reserved.
+           {" "}Bentilzone™. All Rights Reserved.
         </span>
         <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0 md:text-xl">
           <motion.a

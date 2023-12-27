@@ -1,8 +1,7 @@
-'use client'
-
-import {EmptyCartImg} from '../Assets'
+import EmptyCartImg from '../../../../public/img/emptyCart.svg'
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import Image from "next/image";
 
 const Form = () => {
     const [name, setName] = useState('')
@@ -20,7 +19,7 @@ const Form = () => {
     }
   return (
     <div className="h-full w-full flex items-center flex-col justify-center px-4 bg-primary">
-        <img src={EmptyCartImg} alt="not found" className="w-[30%] h-[30%]" />
+        <Image src={EmptyCartImg} alt="Empty cart" className="w-[30%] h-[30%]" />
       <form action="#" className="mb-6 w-full flex itemx-center justify-center gap-y-3 flex-col">
       <div className="mb-6">
           <input

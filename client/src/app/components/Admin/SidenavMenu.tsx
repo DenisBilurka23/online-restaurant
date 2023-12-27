@@ -1,3 +1,5 @@
+'use client'
+
 import { AiFillDashboard } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import {
@@ -11,7 +13,7 @@ import AddFood from "./AddFood";
 import Dashboard from "./Dashboard";
 import Users from "./Users";
 import Menu from "./Menu";
-import {useStateValue} from "@/context/StateProvider";
+import { useStateValue } from "../../context/StateProvider";
 
 const SidenavMenu = ({
   activePage,
@@ -102,7 +104,7 @@ const NavItem = ({
     setActivePage(title);
     setPageContent(pageContent);
   };
-  const [{users, foodItems}] = useStateValue()
+  const [{users, foodItems}, dispatch] = useStateValue()
   return (
     <motion.div
       whileTap={{ scale: 1.1 }}
@@ -118,7 +120,7 @@ const NavItem = ({
             <div className=" w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center cursor-pointer">
             <p className="text-sm text-white font-semibold">
               {
-                title === "Menu"? foodItems?.length:users.length
+                title === "Menu"? foodItems.length:users.length
               }
             </p>
           </div>

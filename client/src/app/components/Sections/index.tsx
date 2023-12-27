@@ -1,6 +1,6 @@
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+// import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
-import {motion} from 'framer-motion';
+// import {motion} from 'framer-motion';
 
 export const Title = ({ title, center }: { title: string, center?:boolean }) => {
   return (
@@ -54,12 +54,12 @@ export const PrevNext = ({
 }) => {
   return (
     <div className="hidden md:flex items-center gap-3">
-      <motion.div whileTap={{scale:1.1}} onClick={onPrev} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">
-          <MdChevronLeft className = "text-lg text-white" />
-      </motion.div>
-      <motion.div whileTap={{scale:1.1}} onClick = {onNext} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">
-          <MdChevronRight className = "text-lg text-white" />
-      </motion.div>
+      {/*<motion.div whileTap={{scale:1.1}} onClick={onPrev} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">*/}
+      {/*    <MdChevronLeft className = "text-lg text-white" />*/}
+      {/*</motion.div>*/}
+      {/*<motion.div whileTap={{scale:1.1}} onClick = {onNext} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">*/}
+      {/*    <MdChevronRight className = "text-lg text-white" />*/}
+      {/*</motion.div>*/}
     </div>
   );
 };

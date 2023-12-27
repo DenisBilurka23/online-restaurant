@@ -1,25 +1,31 @@
-import { BiMinus, BiPlus } from "react-icons/bi";
+'use client'
 
+import { BiMinus, BiPlus } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
-import { cartItem } from "@/types";
+import { deleteCartItem, getFoodyById, updateCartItemQty } from "../../utils/functions";
+import { useStateValue } from "../../context/StateProvider";
+import {cartItem} from "../../../../types";
+import Image from "next/image";
 
 const CartItem = ({ item }: { item: cartItem }) => {
-  const { fid, qty } = item;
+  const [{ foodItems, cartItems }, dispatch] = useStateValue();
+  const { id, fid, qty } = item;
+  const foodItem = getFoodyById(foodItems, fid);
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem hover:shadow-md flex items-center justify-between gap-2 cursor-pointer ">
       <div className=" flex items-center  gap-2">
-        <img
-          src='/'
-          alt=""
+        <Image
+          src={foodItem?.imageURL}
+          alt="Food Item"
           className="w-20 h-20 max-w-[60px] rounded-full object-contain"
         />
 
         <div className="flex flex-col gap-0 ">
-          <p className="text-base text-gray-50">Title</p>
+          <p className="text-base text-gray-50">{foodItem?.title}</p>
           <p className="text-sm block text-gray-300 font-semibold">
-            <span className="text-xs text-red-600">$</span> 99$
+            <span className="text-xs text-red-600">₵</span> {foodItem?.price}
           </p>
         </div>
       </div>
@@ -28,6 +34,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
         <motion.div
           className=""
           whileTap={{ scale: 0.75 }}
+          onClick={qty > 1 ? () => updateCartItemQty(cartItems, foodItems, item, dispatch, -1) : () => {}}
         >
           <BiMinus className="text-gray-50" />
         </motion.div>
@@ -37,6 +44,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
         <motion.div
           className=""
           whileTap={{ scale: 0.75 }}
+          onClick={() => updateCartItemQty(cartItems, foodItems, item, dispatch, 1)}
         >
           <BiPlus className="text-gray-50" />
         </motion.div>
@@ -45,6 +53,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
       <motion.div
         whileTap={{ scale: 0.75 }}
         className="text-sm text-gray-50 w-6 h-6 rounded-lg bg-cartNumBg flex items-center justify-center"
+        onClick={() => deleteCartItem(cartItems, foodItems, item, dispatch)}
       >
         <MdDelete />
       </motion.div>

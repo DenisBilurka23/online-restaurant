@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useStateValue } from "@/app/context/StateProvider";
 import User from "./user";
-import {useStateValue} from "@/context/StateProvider";
 
 
 const Users = () => {

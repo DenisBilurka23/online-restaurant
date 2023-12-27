@@ -1,5 +1,6 @@
 'use client'
 
+import { useStateValue } from "../../context/StateProvider";
 import CartBody from "./Body";
 import CarttHeader from "./Header";
 import { motion } from "framer-motion";
@@ -7,9 +8,8 @@ import EmptyCart from "../EmptyCart";
 import NotFound from "../NotFound";
 import Checkout from "../Checkout";
 import { useState } from "react";
-
 const Cart = () => {
-  const cartItems = [];
+  const [{ cartItems }] = useStateValue();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   return (
     <>

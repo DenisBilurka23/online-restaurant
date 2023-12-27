@@ -1,7 +1,8 @@
-// import React from 'react'
+'use client'
+
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
-import {useStateValue} from "@/context/StateProvider";
+import { useStateValue } from "../../context/StateProvider";
 import Link from "next/link";
 
 const Navigations = ({ direction }: { direction?: string }) => {
@@ -37,6 +38,12 @@ const Navigations = ({ direction }: { direction?: string }) => {
           className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
         >
           <Link href={'/menu'}>Menu</Link>
+        </motion.li>
+        <motion.li
+          whileHover={{ scale: 1.1 }}
+          className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
+        >
+          <Link href={'/services'}>Services</Link>
         </motion.li>
         <motion.li
           whileHover={{ scale: 1.1 }}

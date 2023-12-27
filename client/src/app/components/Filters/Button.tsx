@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MdOutlineFastfood } from "react-icons/md";
-import { FoodCategory } from "@/types";
+import {FoodCategory} from "../../../../types";
 const Button = ({
   category,
   filter,

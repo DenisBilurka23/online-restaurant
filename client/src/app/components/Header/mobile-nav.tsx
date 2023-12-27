@@ -1,9 +1,11 @@
-import { MdOutlineRestaurantMenu, MdShoppingBasket } from "react-icons/md";
+'use client'
 
-import { Logo } from "../Assets";
+import { MdOutlineRestaurantMenu, MdShoppingBasket } from "react-icons/md";
+import Logo from "../../../../public/img/logo.png";
 import { motion } from "framer-motion";
-import {useStateValue} from "@/context/StateProvider";
+import { useStateValue } from "../../context/StateProvider";
 import Link from "next/link";
+import Image from "next/image";
 
 const MobileNav = ({
   isOpen,
@@ -63,6 +65,9 @@ const MobileNav = ({
         <Link onClick={() => setIsOpen(!isOpen)} href={'/menu'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
           Menu
         </Link>
+        <Link onClick={() => setIsOpen(!isOpen)} href={'services'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
+          Services
+        </Link>
         <Link onClick={() => setIsOpen(!isOpen)} href={'/about'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
           About
         </Link>
@@ -81,8 +86,8 @@ const MobileNav = ({
           whileHover={{ scale: 1.1 }}
           className="flex items-center gap-2 cursor-pointer"
         >
-          <img src={Logo} alt="Logo" className="w-16 object-cover" />
-          <p className="text-headingColor text-3xl font-bold">Online restaurant</p>
+          <Image src={Logo} alt="Logo" className="w-16 object-cover" />
+          <p className="text-headingColor text-3xl font-bold">Bentilzone</p>
         </motion.div>
       </Link>
     </div>

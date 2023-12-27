@@ -1,16 +1,14 @@
-import { FoodItem } from "@/types";
 import { motion } from "framer-motion";
 import Action from "./action";
-export const SingleFoodItem = ({
-  item,
-  col,
-  admin
-}: {
+import MotionImg from "@/app/components/MotionImg";
+import {FoodItem} from "../../../../types";
+export const SingleFoodItem = (
+    {item, col, admin}: {
   item: FoodItem;
   col?: boolean;
   admin?:boolean
 }) => {
-  const { title, price, calories, imageURL, description } = item;
+  const { id, title, price, calories, imageURL, description } = item;
 
   return (
     <motion.div
@@ -22,7 +20,7 @@ export const SingleFoodItem = ({
       } h-auto bg-cardOverlay rounded-lg p-2 px-3 backdrop-blur-lg hover:drop-shadow-sm cursor-pointer`}
     >
       <div className="w-full flex items-center justify-between">
-        <motion.img
+        <MotionImg
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 1.1 }}
           className="w-40 h-40 md:w-48 md:h-40 -mt-8 object-contain cursor-pointer"

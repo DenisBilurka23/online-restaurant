@@ -1,6 +1,5 @@
 'use client'
 
-import { AssetUploader, Loader } from "../..";
 import { BiCategory, BiFoodMenu } from "react-icons/bi";
 import {
   MdDeleteOutline,
@@ -10,12 +9,16 @@ import {
   MdOutlineProductionQuantityLimits,
 } from "react-icons/md";
 
+import { Categories } from "@/app/utils/categories";
 import CategoriesSelector from "./CategoriesSelector";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import {categories} from "@/utils/data";
+import { useStateValue } from "@/app/context/StateProvider";
+import { fetchFoodData } from "@/app/utils/functions";
+import Image from "next/image";
+import {AssetUploader, Loader} from "@/app/components";
 
 const AddFood = () => {
   const [title, setTitle] = useState("");
@@ -27,12 +30,49 @@ const AddFood = () => {
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [loaderMessage, setLoadermessage] = useState("");
+  const [{ foodItems }, dispatch] = useStateValue();
 
   const deleteImage = () => {
     setLoadermessage("Removing Photo......");
   };
   const saveItem = () => {
     setLoadermessage(`Saving Product ${title}.`);
+    setLoading(true);
+    try {
+      if (!title || !calories || !price || !image || !category) {
+        toast.error("Please fill all fields before saving product 🤗");
+        setLoading(false);
+        return;
+      } else {
+        const data = {
+          id: Date.now(),
+          title: title,
+          calories: calories,
+          category: category,
+          description: description,
+          price: price,
+          imageURL: image,
+          qty: quantity,
+        };
+        clearForm();
+        setLoading(false);
+        fetchFoodData();
+        setLoadermessage("");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error whilesaving product");
+    }
+  };
+  const clearForm = () => {
+    setTitle("");
+    setCalories("");
+    setPrice("");
+    setImage(null);
+    // setCategory("");
+    setQuantity("");
+    setDescription("");
   };
 
   const validateNumber = (value: any) => {
@@ -65,7 +105,7 @@ const AddFood = () => {
           <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
             <BiCategory className="text-xl text-gray-600" />
             <CategoriesSelector
-              categories={categories}
+              categories={Categories}
               action={setCategory}
               selected={category}
             />
@@ -91,7 +131,7 @@ const AddFood = () => {
               {image ? (
                 <>
                   <div className="relative h-full">
-                    <img
+                    <Image
                       src={image}
                       alt="uploaded food"
                       className="w-full h-full object-cover"
@@ -109,9 +149,9 @@ const AddFood = () => {
                 </>
               ) : (
                 <AssetUploader
-                  // action={setImage}
-                  // progressHandler={setLoadermessage}
-                  // promise={setLoading}
+                  action={setImage}
+                  progressHandler={setLoadermessage}
+                  promise={setLoading}
                 />
               )}
             </>

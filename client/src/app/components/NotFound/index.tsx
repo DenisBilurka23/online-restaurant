@@ -1,10 +1,10 @@
-import React from 'react'
-import {NotFoundImg} from "@/app/components/Assets";
+import NotFoundImg from '../../../../public/img/NotFound.svg'
+import Image from "next/image";
 
 const NotFound = ({text}: {text:string}) => {
   return (
     <div className='w-full p-5 flex flex-col items-center gap-4 justify-center'>
-        <img className='h-[340px]' src={NotFoundImg} alt='empty cart' />
+        <Image className='h-[340px]' src={NotFoundImg} alt='Not Found' />
         <p className="text-textColor  font-semibold">{text}</p>
     </div>
   )

@@ -1,14 +1,33 @@
 'use client'
 
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ProviderAuth, {ImageBox} from "@/app/Auth";
+import { useStateValue } from "../../context/StateProvider";
+import Link from "next/link";
+import Auth, {ImageBox} from "@/app/components/Auth";
 
-const Page = () => {
+const SignIn = () => {
+  const [{ user }, dispatch] = useStateValue();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const EmailAuth = () => {}
+  const EmailAuth = () => {
+    if (!user) {
+      if (email.length > 0 && password.length > 0) {
+        const userData = [user, email];
+        dispatch({
+          type: "SET_USER",
+          user: user,
+        });
+        localStorage.setItem("user", JSON.stringify(userData));
+        // navigate("/");
+
+      } else {
+        toast.warn("Please fill all the fields", { autoClose: 15000 });
+      }
+    }
+  };
 
   return (
     <section className="w-full h-auto ">
@@ -17,7 +36,7 @@ const Page = () => {
           <ImageBox />
           <div className="w-full md:w-[30rem]">
             <form className="p-2">
-              <ProviderAuth />
+              <Auth />
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                 <p className="text-center text-textColor text-sm font-semibold mx-4 mb-0">
                   OR
@@ -43,7 +62,7 @@ const Page = () => {
 
               <div className="flex justify-between items-center mb-6">
                 <Link
-                  to="/"
+                  href="/"
                   className="text-orange-600 hover:text-orange-700 focus:text-orange-700 active:text-orange-800 duration-200 transition ease-in-out"
                 >
                   Forgot password?
@@ -63,7 +82,7 @@ const Page = () => {
                   Don't have an account?
                 </p>
               </div>
-              <Link to={"/register"}>
+              <Link href={"/sign-up"}>
                 <motion.p
                   whileHover={{ scale: 0.99 }}
                   className="cursor-pointer flex items-center justify-center px-7 py-3 bg-gradient-to-br from-orange-400 to-orange-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-orange-600 hover:shadow-lg focus:bg-orange-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
@@ -79,4 +98,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default SignIn;

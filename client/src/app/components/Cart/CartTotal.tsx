@@ -1,5 +1,7 @@
+'use client'
+
 import {motion} from 'framer-motion'
-import {useStateValue} from "@/context/StateProvider";
+import { useStateValue } from '../../context/StateProvider';
 
 const CartTotal = ({checkoutState}: {checkoutState:any}) => {
   const [{cartTotal}] = useStateValue();
@@ -15,7 +17,7 @@ const CartTotal = ({checkoutState}: {checkoutState:any}) => {
           <p className="text-gray-400 text-base md:text-lg">-</p>
           <p className="text-gray-400 text-base md:text-lg "><span className="text-sm text-red-600">₵</span> {0.00}</p>
         </div>
-        <div className="w-full border-b border-gray-600"></div>
+        <div className="w-full border-b border-gray-600 my-"></div>
         <div className="w-full flex items-center justify-between">
         <p className="text-gray-50 text-base md:text-lg uppercase">Total</p>
         <p className="text-gray-50 text-base md:text-lg">-</p>

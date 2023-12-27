@@ -1,5 +1,7 @@
 'use client'
 
+import Logo from '../../../../public/img/logo.png'
+import Avatar from '../../../../public/img/avatar.png'
 import DropDown from "./DropDown";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import LoginAction from "./LoginAction";
@@ -8,11 +10,12 @@ import Navigations from "./Navigations";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useStateValue } from "../../context/StateProvider";
 import Link from "next/link";
-import {Avatar, Logo} from "@/app/components/Assets";
+import Image from "next/image";
 
 const Header = () => {
-    const user = 'user'
+  const [{ user }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMobileNav, setIsOpenMobileNav] = useState(false);
 
@@ -26,25 +29,20 @@ const Header = () => {
             whileHover={{ scale: 1.1 }}
             className="flex items-center gap-2 cursor-pointer"
           >
-            <img src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
+            <Image src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
             <p className="text-headingColor md:text-lg lg:text-xl font-bold">
-              Online Restaurant
+              Bentilzone
             </p>
           </motion.div>
         </Link>
-
-        {/* navigation */}
         <Navigations />
-
-        {/* User */}
-
         {user ? (
           <div className={`group flex items-center gap-3 px-3 py-1 rounded-lg`}>
             <motion.div
               whileHover={{ scale: 1.1 }}
               className=" flex items-center justify-center"
             >
-              <img
+              <Image
                 src={user.photoURL || Avatar}
                 className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-contain"
                 alt="profile"
@@ -83,9 +81,9 @@ const Header = () => {
                 whileHover={{ scale: 1.1 }}
                 className="flex items-center gap-2 cursor-pointer"
               >
-                <img src={Logo} alt="Logo" className="w-8 object-cover" />
+                <Image src={Logo} alt="Logo" className="w-8 object-cover" />
                 <p className="text-headingColor text-xl font-bold">
-                  Online restaurant
+                  Bentilzone
                 </p>
               </motion.div>
             </Link>
@@ -97,7 +95,7 @@ const Header = () => {
                   whileHover={{ scale: 1.1 }}
                   className="group flex items-center justify-center"
                 >
-                  <img
+                  <Image
                     src={user?.photoURL ? user.photoURL : Avatar}
                     className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer"
                     alt="user-profile"

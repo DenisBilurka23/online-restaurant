@@ -1,16 +1,20 @@
+'use client'
+
 import { BiLock } from "react-icons/bi";
 import CardForm from "./forms/Card";
 import CheckoutFooter from "./footer";
 import MomoForm from "./forms/Momo";
 import Selector from "./Selector";
 import { motion } from "framer-motion";
+import { useStateValue } from "../../context/StateProvider";
+import { emptyCart } from "../../utils/functions";
 import { useState } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { toast } from "react-toastify";
-import {useStateValue} from "@/context/StateProvider";
 
 const Body = ({ action }: { action: any }) => {
-  const [{ checkoutData, cartTotal, paymentMethod }] = useStateValue();
+  const [{ checkoutData, cartTotal, paymentMethod, cartItems, foodItems }, dispatch] =
+    useStateValue();
   const [loading, setLoading] = useState(false);
 
   const completePayment = () => {
@@ -18,6 +22,7 @@ const Body = ({ action }: { action: any }) => {
     setLoading(true);
     setTimeout(async () => {
       setLoading(false);
+      await emptyCart(cartItems, foodItems, dispatch);
       action(false);
       toast.success("Order completed successfuly with payment. Thank you for your patronage.", {
         position: "top-center",

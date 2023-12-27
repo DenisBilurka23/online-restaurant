@@ -1,5 +1,11 @@
-import { CreditCard, MOMO } from "../Assets";
-import {useStateValue} from "@/context/StateProvider";
+'use client'
+
+import { useStateValue } from "../../context/StateProvider";
+import Image from "next/image";
+import MOMO from "../../../../public/img/momo.png"
+import CreditCard from '../../../../public/img/visa.png'
+
+
 const Selector = () => {
   const [{paymentMethod}, dispatch] = useStateValue();
   const setPaymentMethod = (method:string) => {
@@ -27,7 +33,7 @@ const Selector = () => {
             id="type1"
             checked={paymentMethod === "mobile_money"}
           />
-          <img src={MOMO} alt="" className="h-8 ml-3" />
+          <Image src={MOMO} alt="" className="h-8 ml-3" />
         </label>
       </div>
       <div
@@ -47,7 +53,7 @@ const Selector = () => {
             id="type2"
             checked={paymentMethod === "bank"}
           />
-          <img src={CreditCard} alt="" className="h-8 ml-3" />
+          <Image src={CreditCard} alt="Credit Card" className="h-8 ml-3" />
         </label>
       </div>
     </div>

@@ -1,4 +1,6 @@
-import {useStateValue} from "@/context/StateProvider";
+'use client'
+
+import { useStateValue } from "@/app/context/StateProvider";
 
 const MomoForm = () => {
   const [{checkoutData}, dispatch] = useStateValue();

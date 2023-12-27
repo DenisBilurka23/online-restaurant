@@ -3,11 +3,12 @@ import { GiShieldDisabled } from "react-icons/gi";
 import { Avatar } from "../../Assets";
 import { FcGoogle } from "react-icons/fc";
 import {motion} from "framer-motion";
+import MotionImg from "@/app/components/MotionImg";
 const User = ({item}: {item:any}) => {
   return (
     <div className="max-w-sm h-auto rounded-lg border border-orange-50 bg-orange-600">
     <div className="flex flex-col gap-1 items-center pb-10">
-      <motion.img
+      <MotionImg
         whileHover= {{scale:1.1}}
         className="mb-3 w-24 h-24 rounded-full shadow-lg cursor-pointer object-contain"
         src={item?.photoURL || Avatar} 

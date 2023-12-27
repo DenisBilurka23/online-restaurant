@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import {Stats} from "@/app/components";
-import Sidenav from "@/app/components/Admin/Sidenav";
-import Content from "@/app/components/Admin/Content";
+'use client'
 
+import { useState } from 'react';
+import { Content, Sidenav, Stats } from '../../components';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState("Dashboard");

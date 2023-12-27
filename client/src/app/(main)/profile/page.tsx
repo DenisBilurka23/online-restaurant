@@ -10,28 +10,47 @@ import {
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import {AssetUploader} from "@/app/components";
-import Loader from "@/app/components/Loader";
+import { useStateValue } from "../../context/StateProvider";
+import { AssetUploader, Loader } from "../../components";
+import { updateUserData } from "../../utils/functions";
+import Image from "next/image";
 
 
 const UpdateProfile = () => {
-  const [displayName, setDisplayName] = useState(
-      // user.displayName
-  )
-  const [photoURL, setPhotoURL] = useState(
-      // user.photoURL
-  )
+  const [{ user }, dispatch] = useStateValue();
+  const [displayName, setDisplayName] = useState(user.displayName)
+  // const [email, setEmail] = useState(user.email)
+  const [photoURL, setPhotoURL] = useState(user.photoURL)
   const [loading, setLoading] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState(
-      // user.phoneNumber
-  )
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
   const [btnText, setBtnText] = useState("Save")
   const [loaderMessage, setLoadermessage] = useState("");
 
-  const deleteImage = async () => {};
-  const saveChanges = async () => {};
+  const deleteImage = async () => {
+    setLoadermessage("Removing Photo......");
+  };
+  const saveChanges = async () => {
+    setBtnText("Saving....");
+    if(displayName.lenth < 0 || phoneNumber.length !== 10)
+    {
+      toast.error("Fill out fields correctly")
+      setBtnText("Save")
+    }else{
+      const data = {
+        ...user,
+        displayName,
+        phoneNumber,
+        photoURL,
+      }
+      await updateUserData();
+      setBtnText("Save");
+    }
 
-  const updatePhotoUrl = async () => {}
+  };
+
+  const updatePhotoUrl = async (newUrl: string) => {
+    setPhotoURL(newUrl);
+  }
 
   const validateNumber = (value: any) => {
     if (isNaN(value)) {
@@ -54,8 +73,8 @@ const UpdateProfile = () => {
             placeholder="Enter full name"
             autoFocus
             className="h-full w-full  bg-transparent pl-2 text-textColor outline-none border-none placeholder:text-gray-400"
-            // value={displayName}
-            // onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
           />
         </div>
 
@@ -81,8 +100,8 @@ const UpdateProfile = () => {
              {photoURL ? (
                 <>
                   <div className="relative h-full">
-                    <img
-                      // src={photoURL}
+                    <Image
+                      src={photoURL}
                       alt="uploaded food"
                       className="w-full h-full object-cover"
                     />
@@ -98,7 +117,11 @@ const UpdateProfile = () => {
                   </div>
                 </>
               ) : (
-                <AssetUploader/>
+                <AssetUploader
+                  action={updatePhotoUrl}
+                  progressHandler={setLoadermessage}
+                  promise={setLoading}
+                />
               )}
               </>
             )
@@ -111,7 +134,7 @@ const UpdateProfile = () => {
             className="ml-0 flex justify-center items-center gap-2 flex-row-reverse md:ml-auto w-full md:w-auto border-none outline-none rounded bg-orange-500 px-12 py-2 text-lg text-white"
             onClick={() => saveChanges()}
           >
-            // <MdOutlineDataSaverOn /> {btnText}
+            <MdOutlineDataSaverOn /> {btnText}
           </motion.button>
         </div>
       </div>

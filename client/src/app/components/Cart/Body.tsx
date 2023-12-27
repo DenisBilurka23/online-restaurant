@@ -1,6 +1,8 @@
+'use client'
+
 import CartItem from './Item'
 import CartTotal from './CartTotal'
-import {useStateValue} from "@/context/StateProvider";
+import { useStateValue } from '../../context/StateProvider';
 
 const CartBody = ({action}:{action:any}) => {
   const [{cartItems}] = useStateValue();

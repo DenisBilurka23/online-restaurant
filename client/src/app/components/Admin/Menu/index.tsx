@@ -3,10 +3,11 @@
 import { FaSearch } from "react-icons/fa";
 import { SingleFoodItem } from "../../FoodItem";
 import React, { useState } from "react";
-import {FoodItem} from "@/types";
+import { useStateValue } from "@/app/context/StateProvider";
+import {FoodItem} from "../../../../../types";
 
 const Menu = () => {
-    const [{ foodItems }] = null
+    const [{ foodItems }, dispatch] = useStateValue();
     const [query, setQuery] = useState("");
     const [filteredFoodItems, setFilteredFoodItems] = useState<FoodItem[]>(foodItems);
     
@@ -40,7 +41,7 @@ const Menu = () => {
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
         {
-            filteredFoodItems?.map((item: FoodItem) => (
+            filteredFoodItems.map((item: FoodItem) => (
                 <SingleFoodItem key={item.id} item={item} col admin />
             ))
         }
