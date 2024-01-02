@@ -4,7 +4,7 @@ import { Categories } from "../../utils/categories";
 import { BiRestaurant } from "react-icons/bi";
 import {FoodCategory} from "../../../../types";
 
-const Filters = ({filter, setFilter}: {filter:string, setFilter: any}) => {
+const Filters = ({ filter, setFilter}: {filter:string, setFilter: any}) => {
 
   return (
     <motion.div

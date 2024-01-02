@@ -18,11 +18,11 @@ import Image from "next/image";
 
 const UpdateProfile = () => {
   const [{ user }, dispatch] = useStateValue();
-  const [displayName, setDisplayName] = useState(user.displayName)
+  const [displayName, setDisplayName] = useState(user?.displayName)
   // const [email, setEmail] = useState(user.email)
-  const [photoURL, setPhotoURL] = useState(user.photoURL)
+  const [photoURL, setPhotoURL] = useState(user?.photoURL)
   const [loading, setLoading] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber)
   const [btnText, setBtnText] = useState("Save")
   const [loaderMessage, setLoadermessage] = useState("");
 
