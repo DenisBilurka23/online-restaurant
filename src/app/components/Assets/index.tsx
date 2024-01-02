@@ -1,20 +1,18 @@
-import AvatarI from "../../../../public/img/avatar.png";
-import Cheff1I from "../../../../public/img/chef1.png";
-import CheffI from "../../../../public/img/cheff.png";
-import LogoI from "../../../../public/img/chef1.png";
-import BikeDeliveryI from "../../../../public/img/delivery.png";
-import HeroBgI from "../../../../public/img/hero-bg.png";
-import EmptyCartI from "../../../../public/img/emptyCart.svg";
-import NotFoundI from "../../../../public/img/NotFound.svg";
-import Visa from "../../../../public/img/visa.png";
-import Momo from "../../../../public/img/momo.png";
+import AvatarI from '../../../../public/img/avatar.png'
+import Cheff1I from '../../../../public/img/chef1.png'
+import CheffI from '../../../../public/img/cheff.png'
+import LogoI from '../../../../public/img/chef1.png'
+import BikeDeliveryI from '../../../../public/img/delivery.png'
+import HeroBgI from '../../../../public/img/hero-bg.png'
+import EmptyCartI from '../../../../public/img/emptyCart.svg'
+import NotFoundI from '../../../../public/img/NotFound.svg'
+import Visa from '../../../../public/img/visa.png'
+import Momo from '../../../../public/img/momo.png'
 // Showcase Banner Static Assets
-import IcreamI from "../../../../public/img/i1.png";
-import StrawberryI from "../../../../public/img/f5.png";
-import ChickenI from "../../../../public/img/c3.png";
-import FishI from "../../../../public/img/fi3.png";
-
-
+import IcreamI from '../../../../public/img/i1.png'
+import StrawberryI from '../../../../public/img/f5.png'
+import ChickenI from '../../../../public/img/c3.png'
+import FishI from '../../../../public/img/fi3.png'
 
 // Exports
 export const Logo = LogoI
