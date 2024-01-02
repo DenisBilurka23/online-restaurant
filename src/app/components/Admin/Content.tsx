@@ -6,8 +6,8 @@ import { ToggleAdminMode } from '../../utils/functions'
 import Link from 'next/link'
 import { type FunctionComponent } from 'react'
 
-const Content: FunctionComponent = ({ pageTitle, Element }: { pageTitle: string; Element: JSX.Element }) => {
-	const [{}, dispatch] = useStateValue()
+const Content: FunctionComponent<{ pageTitle: string; Element: JSX.Element }> = ({ pageTitle, Element }) => {
+	const [{ }, dispatch] = useStateValue()
 	return (
 		<div className="flex flex-col w-[80%] h-screen px-2">
 			<div className="flex justify-between w-full text-xl font-bold text-gray-600 border-b-2 border-orange-200 pt-6 pb-2 px-6">

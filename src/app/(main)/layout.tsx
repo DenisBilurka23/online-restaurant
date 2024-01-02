@@ -13,7 +13,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
 	useEffect(() => {
 		fetchFoodData()
-		dispatchUsers(dispatch)
+		dispatchUsers()
 		user && fetchUserCartData(user, dispatch)
 	}, [])
 
@@ -28,10 +28,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 				{showContactForm && <Contact />}
 				{!(adminMode && isAdmin(user)) && <Header />}
 				<main
-					className={`${
-						!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4'
-					} w-full h-auto`}
-					onClick={() => {}}
+					className={`${!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4'
+						} w-full h-auto`}
+					onClick={() => { }}
 				>
 					{children}
 					{!(adminMode && isAdmin(user)) && <Footer />}

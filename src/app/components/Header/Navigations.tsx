@@ -7,13 +7,13 @@ import Link from 'next/link'
 
 const Navigations = ({ direction }: { direction?: string }) => {
 	const [{ showContactForm, cartItems }, dispatch] = useStateValue()
-	const handleToggleCart = () => {
+	const handleToggleCart = (): void => {
 		dispatch({
 			type: 'TOGGLE_CART',
 			showCart: true
 		})
 	}
-	const handleToggleContact = () => {
+	const handleToggleContact = (): void => {
 		dispatch({
 			type: 'TOGGLE_CONTACT_FORM',
 			showContactForm: !showContactForm
