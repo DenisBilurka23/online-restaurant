@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 
-const Navigations = ({ direction }: { direction?: string }) => {
+const Navigations = ({ direction }: { direction?: string }): JSX.Element => {
 	const [{ showContactForm, cartItems }, dispatch] = useStateValue()
 	const handleToggleCart = (): void => {
 		dispatch({
@@ -25,7 +25,7 @@ const Navigations = ({ direction }: { direction?: string }) => {
 				initial={{ opacity: 0, x: 200 }}
 				animate={{ opacity: 1, x: 0 }}
 				exit={{ opacity: 0, x: 200 }}
-				className={`flex items-center gap-8 ${direction && direction}`}
+				className={`flex items-center gap-8 ${direction ?? ''}`}
 			>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
