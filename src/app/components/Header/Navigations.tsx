@@ -4,8 +4,9 @@ import { MdShoppingBasket } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
+import { type FC } from 'react'
 
-const Navigations = ({ direction }: { direction?: string }) => {
+const Navigations: FC = ({ direction }: { direction?: string }) => {
 	const [{ showContactForm, cartItems }, dispatch] = useStateValue()
 	const handleToggleCart = (): void => {
 		dispatch({
@@ -43,7 +44,7 @@ const Navigations = ({ direction }: { direction?: string }) => {
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/services'}>Services</Link>
+					<Link href={'/delivery'}>Delivery</Link>
 				</motion.li>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
