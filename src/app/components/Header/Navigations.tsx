@@ -51,13 +51,20 @@ const Navigations = ({ direction }: { direction?: string }) => {
 				>
 					<Link href={'/about'}>About us</Link>
 				</motion.li>
+
 				<motion.li
+					whileHover={{ scale: 1.1 }}
+					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
+				>
+					<Link href={'/contact'}>Contact</Link>
+				</motion.li>
+				{/* <motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 					onClick={handleToggleContact}
 				>
 					Contact us
-				</motion.li>
+				</motion.li> */}
 			</motion.ul>
 
 			<motion.div
