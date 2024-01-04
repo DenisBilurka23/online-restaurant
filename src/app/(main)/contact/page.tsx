@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import BannerImg from '../../../../public/images/contact_banner.jpg'
-import { PhoneIcon, MapPinIcon, ClockIcon, } from '@heroicons/react/24/outline'
+import { PhoneIcon, MapPinIcon, ClockIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline'
 
 const Contact = (): JSX.Element => {
 	const features = [
 		{
-			name: 'Call Us (Booking/Enquires)',
+			name: 'Phone Call',
 			description: '(647)123-4567',
 			icon: PhoneIcon
 		},
@@ -21,10 +21,10 @@ const Contact = (): JSX.Element => {
 			icon: ClockIcon
 		},
 		{
-			name: 'Advanced security',
-			description:
-				'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-			icon: PhoneIcon
+			name: 'Social Media',
+			description: 'FB: @torontoSizzle',
+			description2: 'IG: @torontoSizzle',
+			icon: ChatBubbleBottomCenterTextIcon
 		},
 	]
 
@@ -84,7 +84,7 @@ const Contact = (): JSX.Element => {
 						<dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
 							{features.map((feature) => (
 								<div key={feature.name} className="relative pl-16">
-									<dt className="absolute text-base font-semibold leading-7 text-gray-900">
+									<dt className="text-base font-semibold leading-7 text-gray-900">
 										<div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
 											<feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
 										</div>
