@@ -6,16 +6,17 @@ import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
+import { type FC } from 'react'
 
-const MobileNav = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
+const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
 	const [{ showContactForm, showCart, cartItems }, dispatch] = useStateValue()
-	const handleToggleCart = () => {
+	const handleToggleCart = (): void => {
 		dispatch({
 			type: 'TOGGLE_CART',
 			showCart: !showCart
 		})
 	}
-	const handleToggleContact = () => {
+	const handleToggleContact = (): void => {
 		dispatch({
 			type: 'TOGGLE_CONTACT_FORM',
 			showContactForm: !showContactForm
@@ -51,7 +52,7 @@ const MobileNav = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) =
 					<MdOutlineRestaurantMenu className="text-headingColor text-4xl" />
 				</motion.div>
 			</motion.div>
-			<div className={`flex items-center justify-center w-full  h-72 gap-10 flex-col`}>
+			<div className={'flex items-center justify-center w-full  h-72 gap-10 flex-col'}>
 				<Link
 					onClick={() => setIsOpen(!isOpen)}
 					href={'/menu'}
@@ -61,10 +62,10 @@ const MobileNav = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) =
 				</Link>
 				<Link
 					onClick={() => setIsOpen(!isOpen)}
-					href={'services'}
+					href={'/delivery'}
 					className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
 				>
-					Services
+					Delivery
 				</Link>
 				<Link
 					onClick={() => setIsOpen(!isOpen)}
