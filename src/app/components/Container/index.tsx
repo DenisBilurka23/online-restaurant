@@ -2,6 +2,7 @@ import NotFound from '../NotFound'
 import { type FC } from 'react'
 import { getProducts } from '@/app/api/fetch/products'
 import ProductItem from '@/app/components/ProductItem'
+import ProductDetail from '@/app/components/ProductItem/ProductDetail'
 
 interface PropTypes {
 	categoryId: number | undefined
@@ -23,6 +24,7 @@ const Container: FC<PropTypes> = async ({ categoryId }) => {
 			)}
 			{/* {!items && (!col ? <Loader progress={'Fetching Food Items.....'} /> : <NotFound text="Fetching Food Items..." />)} */}
 			{products.length === 0 && <NotFound text="No Food Items Available " />}
+			<ProductDetail shown={false} />
 		</div>
 	)
 }
