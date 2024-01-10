@@ -1,15 +1,9 @@
 import { MdShoppingBasket } from 'react-icons/md'
 import { toast } from 'react-toastify'
-import { type cartItem, type FoodItem } from '../../../types'
+import { type cartItem, type Product } from '../../../types'
 import { type FunctionComponent } from 'react'
 
-export const addToCart = async (
-	cartItems: cartItem[],
-	foodItems: FoodItem[],
-	user: any,
-	fid: number,
-	dispatch: any
-) => {
+export const addToCart = async (cartItems: cartItem[], foodItems: Product[], user: any, fid: number, dispatch: any) => {
 	if (!user) {
 		toast.error('Please login to add items to cart', {
 			icon: <MdShoppingBasket className="text-2xl text-cartNumBg" />,
@@ -55,8 +49,8 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
 
 export const fetchFoodData = async () => {}
 
-export const getFoodyById = (menu: FoodItem[], fid: number) => {
-	return menu.find((item: FoodItem) => item.id === fid)
+export const getFoodyById = (menu: Product[], fid: number) => {
+	return menu.find((item: Product) => item.id === fid)
 }
 
 //  Update cart item State
@@ -74,7 +68,7 @@ export const updateCartItemState = async (cartItems: cartItem[], item: cartItem,
 // Update Cart Item Quantity
 export const updateCartItemQty = async (
 	cartItems: cartItem[],
-	foodItems: FoodItem[],
+	foodItems: Product[],
 	item: cartItem,
 	dispatch: any,
 	val: number
@@ -91,7 +85,7 @@ export const updateCartItemQty = async (
 }
 
 //  Delete Cart Item
-export const deleteCartItem = async (cartItems: cartItem[], foodItems: FoodItem[], item: cartItem, dispatch: any) => {
+export const deleteCartItem = async (cartItems: cartItem[], foodItems: Product[], item: cartItem, dispatch: any) => {
 	const index = cartItems.findIndex((cartItem: cartItem) => cartItem.id === item.id)
 	if (index !== -1) {
 		cartItems.splice(index, 1)
@@ -104,7 +98,7 @@ export const deleteCartItem = async (cartItems: cartItem[], foodItems: FoodItem[
 }
 
 // Calculate Total Price Round to 2 decimal places
-export const calculateCartTotal = (cartItems: cartItem[], foodItems: FoodItem[], dispatch: any) => {
+export const calculateCartTotal = (cartItems: cartItem[], foodItems: Product[], dispatch: any) => {
 	let total = 0
 	cartItems.forEach((item: cartItem) => {
 		const foodItem = getFoodyById(foodItems, item.fid)
@@ -117,7 +111,7 @@ export const calculateCartTotal = (cartItems: cartItem[], foodItems: FoodItem[],
 }
 
 // Empty Cart
-export const emptyCart = async (cartItems: cartItem[], foodItems: FoodItem[], dispatch: any) => {
+export const emptyCart = async (cartItems: cartItem[], foodItems: Product[], dispatch: any) => {
 	if (cartItems.length > 0) {
 		dispatch({
 			type: 'SET_CARTITEMS',
@@ -212,7 +206,7 @@ export const dispatchUsers = async () => {}
 
 export const getAllUser = async () => {}
 // delete food
-export const deleteFood = async (food: FoodItem, foodItems: FoodItem[], dispatch: any) => {
+export const deleteFood = async (food: Product, foodItems: Product[], dispatch: any) => {
 	// remove food from foodItems
 	const foodIndex = foodItems.indexOf(food)
 	if (foodIndex !== -1) {

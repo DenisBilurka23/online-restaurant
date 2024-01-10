@@ -1,52 +1,29 @@
-'use client'
-
-import { useLayoutEffect, useRef } from 'react'
-import Loader from '../Loader'
-import { SingleFoodItem } from '../FoodItem'
-import { motion } from 'framer-motion'
 import NotFound from '../NotFound'
-import { isAdmin } from '../../utils/functions'
-import { useStateValue } from '../../context/StateProvider'
-import { FoodItem } from '../../../../types'
+import { type FC } from 'react'
+import { getProducts } from '@/app/api/fetch/products'
+import ProductItem from '@/app/components/ProductItem'
 
-const Container = ({
-	scrollOffset,
-	col,
-	items,
-	className
-}: {
-	scrollOffset: number
-	col?: boolean
-	items: FoodItem[]
-	className?: string
-}) => {
-	const containerRef = useRef<HTMLDivElement>(null)
-	useLayoutEffect(() => {
-		if (null !== containerRef.current) {
-			containerRef.current.scrollLeft += scrollOffset
-		}
-	}, [scrollOffset])
-	const [{ user }, dispatch] = useStateValue()
+interface PropTypes {
+	categoryId: number | undefined
+}
+
+const Container: FC<PropTypes> = async ({ categoryId }) => {
+	const { products } = await getProducts(categoryId)
+
 	return (
-		<motion.div
-			ref={containerRef}
-			initial={{ opacity: 0, x: 200 }}
-			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, x: 200 }}
-			className={`${className} w-full my-12 flex items-center ${
-				(!items || col) && 'justify-center'
-			}   min-h-[200px] gap-4  px-2 ${
-				!col ? 'overflow-x-scroll scrollbar-hidden scroll-smooth' : 'overflow-x-hidden flex-wrap'
-			}`}
-		>
-			{items &&
-				items.map((item: FoodItem) => (
-					<SingleFoodItem key={item.id} item={item} col={col} admin={isAdmin(user)} />
-				))}
-			{!items &&
-				(!col ? <Loader progress={'Fetching Food Items.....'} /> : <NotFound text="Fetching Food Items..." />)}
-			{items && items.length <= 0 && <NotFound text="No Food Items Available " />}
-		</motion.div>
+		<div>
+			{products && (
+				<div className="mx-auto my-10 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+					<div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+						{products.map(product => (
+							<ProductItem key={product.id} product={product} />
+						))}
+					</div>
+				</div>
+			)}
+			{/* {!items && (!col ? <Loader progress={'Fetching Food Items.....'} /> : <NotFound text="Fetching Food Items..." />)} */}
+			{products.length === 0 && <NotFound text="No Food Items Available " />}
+		</div>
 	)
 }
 
