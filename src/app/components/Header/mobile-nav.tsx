@@ -89,7 +89,7 @@ const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any 
 					className="flex items-center gap-2 cursor-pointer"
 				>
 					<Image src={Logo} alt="Logo" className="w-16 object-cover" />
-					<p className="text-headingColor text-3xl font-bold">Bentilzone</p>
+					<p className="text-headingColor text-3xl font-bold">TorontoSizzle</p>
 				</motion.div>
 			</Link>
 		</div>

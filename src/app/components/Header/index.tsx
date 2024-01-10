@@ -26,7 +26,7 @@ const Header = () => {
 				<Link href={'/'}>
 					<motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-2 cursor-pointer">
 						<Image src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
-						<p className="text-headingColor md:text-lg lg:text-xl font-bold">Bentilzone</p>
+						<p className="text-headingColor md:text-lg lg:text-xl font-bold">TorontoSizzle</p>
 					</motion.div>
 				</Link>
 				<Navigations />
@@ -70,7 +70,7 @@ const Header = () => {
 						<Link href={'/'}>
 							<motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-2 cursor-pointer">
 								<Image src={Logo} alt="Logo" className="w-8 object-cover" />
-								<p className="text-headingColor text-xl font-bold">Bentilzone</p>
+								<p className="text-headingColor text-xl font-bold">TorontoSizzle</p>
 							</motion.div>
 						</Link>
 						{user ? (
