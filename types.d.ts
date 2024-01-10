@@ -1,52 +1,51 @@
-export type foodItemStatic = {
-	id: number
-	title: string
-	desc: string
-	price: string
-	imgSrc: string
-}
-export type foodItemsStatic = {
-	items: foodItemStatic[]
-}
-export type FoodItem = {
-	id: number
-	title: string
-	description?: string
-	price: string
-	imageURL: string
-	calories: string
-	qty: string
-	category: string
+interface Response {
+	success: boolean
+	msgCode: number
+	msg: string
 }
 
-export type FoodItems = {
-	items: FoodItem[]
-}
-
-export type FoodCategory = {
+export interface Category {
 	id: number
 	name: string
-	urlParam: string
-	icon?: JSX.Element
+	img_path: string
 }
 
-export type cartItem = {
+export interface FoodCategories extends Response {
+	categories: Category[]
+}
+
+export interface FoodCategory extends Response {
+	category: Category
+}
+
+export interface Product {
+	id: number
+	name: string
+	price: number
+	abstract: string
+	description: string
+	product_image_path: string
+	category_id: number
+	category_name: string
+	product_status: string
+	img_path: string
+}
+
+export interface ProductResponse extends Response {
+	product: Product
+}
+
+export interface Products extends Response {
+	products: Product[]
+}
+
+export interface cartItem {
 	id: number
 	fid: number
 	uid: string
 	qty: number
 }
 
-export type cartItems = {
+export interface cartItems {
 	items: cartItem[]
 }
-
-export type User = {
-	uid: string
-	email?: string
-	displayName?: string
-	phoneNumber?: string
-	providerId: string
-	photoURL?: string
-}
-export type FoodCategories = FoodCategory[]
