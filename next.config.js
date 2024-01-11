@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    BASE_URL:'http://localhost:3000'
-  }
+
+	images: {
+		domains: ['images.pexels.com', 'pngfre.com']
+	},
+	env: {
+		BASE_URL: 'http://localhost:3000'
+	}
+
 }
 
 module.exports = nextConfig

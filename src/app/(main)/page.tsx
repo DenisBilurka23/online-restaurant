@@ -1,8 +1,13 @@
 import MenuSection from '@/app/components/Sections/Menu'
+import { type FC } from 'react'
 
-const Home = (): JSX.Element => (
+interface Props {
+	searchParams: { categoryId: string; productId: string }
+}
+
+const Home: FC<Props> = ({ searchParams }) => (
 	<div className="flex w-full h-auto flex-col items-center justify-center">
-		<MenuSection />
+		<MenuSection categoryId={searchParams.categoryId} productId={searchParams.productId} baseUrl="/" />
 	</div>
 )
 
