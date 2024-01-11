@@ -16,7 +16,8 @@ module.exports = {
 				cartTotal: '#343739',
 				mild: '#EA580C',
 				mildLight: '#F15F19',
-				spicy: '#CA2211'
+				spicy: '#CA2211',
+				beige: '#FAF7F7'
 			},
 			display: ['group-hover']
 		},
