@@ -3,12 +3,14 @@ import { type FC } from 'react'
 import { getProducts } from '@/app/api/fetch/products'
 import ProductItem from '@/app/components/ProductItem'
 import ProductDetail from '@/app/components/ProductItem/ProductDetail'
+import ProductContent from '@/app/components/ProductItem/ProductContect'
 
 interface PropTypes {
 	categoryId: number | undefined
+	productId: string
 }
 
-const Container: FC<PropTypes> = async ({ categoryId }) => {
+const Container: FC<PropTypes> = async ({ categoryId, productId }) => {
 	const { products } = await getProducts(categoryId)
 
 	return (
@@ -22,9 +24,10 @@ const Container: FC<PropTypes> = async ({ categoryId }) => {
 					</div>
 				</div>
 			)}
-			{/* {!items && (!col ? <Loader progress={'Fetching Food Items.....'} /> : <NotFound text="Fetching Food Items..." />)} */}
 			{products.length === 0 && <NotFound text="No Food Items Available " />}
-			<ProductDetail shown={false} />
+			<ProductDetail productId={productId}>
+				<ProductContent productId={productId} />
+			</ProductDetail>
 		</div>
 	)
 }

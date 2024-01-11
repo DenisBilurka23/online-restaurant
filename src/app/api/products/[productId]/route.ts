@@ -12,7 +12,6 @@ type RequestType = (
 export const GET: RequestType = async (request, { params }) => {
 	const productId = params.productId
 	const product = products.find(({ id }) => id === +productId)
-
 	const json = {
 		success: true,
 		msgCode: 1,
