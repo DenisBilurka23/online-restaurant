@@ -1,12 +1,20 @@
-import { type Products } from '../../../../types'
+import { type Product, type Products } from '../../../../types'
+import { REQUEST } from '@/app/api/fetch/index'
 
 export const getProducts: (categoryId: number | undefined) => Promise<Products> = async categoryId => {
-	const res = await fetch(`http://localhost:3000/api/products/${categoryId ? `?categoryId=${categoryId}` : ''}`, {
-		next: { revalidate: 5 }
-	})
+	const res = await REQUEST(`api/products/${categoryId ? `?categoryId=${categoryId}` : ''}`)
 	if (!res.ok) {
 		throw new Error('Failed to fetch data')
 	}
 
-	return await res.json()
+	return res.json()
+}
+
+export const getProduct: (productId: string) => Promise<Product> = async productId => {
+	const res = await REQUEST(`api/products/${productId}`)
+	if (!res.ok) {
+		throw new Error('Failed to fetch data')
+	}
+
+	return res.json()
 }
