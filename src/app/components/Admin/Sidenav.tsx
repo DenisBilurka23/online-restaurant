@@ -44,7 +44,7 @@ const SidenavHeader = () => {
 				className="flex items-center ml-1 pb-8 w-full justify-center"
 			>
 				<Image src={Logo} alt="Logo" className="w-10 h-10" />
-				<p className="text-xl font-bold pl-1 no-underline text-orange-50 hover:text-orange-100">Bentilzone</p>
+				<p className="text-xl font-bold pl-1 no-underline text-orange-50 hover:text-orange-100">TorontoSizzle</p>
 			</Link>
 		</motion.div>
 	)
