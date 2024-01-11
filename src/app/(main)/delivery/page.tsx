@@ -10,7 +10,7 @@ const Delivery: FunctionComponent = () => {
 		<div>
 			<Banner img={BannerImg} className="" alt="banner" title="PICKUP / ONLINE DELIVERY" />
 			<Title styles="text-black text-3xl sm:text-4xl my-10">CHOOSE YOUR DELIVERY OPTION</Title>
-			<div className="flex fle mx-auto max-w-7xl px-6 lg:px-8">
+			<div className="flex mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 py-10 sm:py-16 lg:mx-0 md:max-w-none md:grid-cols-3">
 					{deliveryOptions.map(({ title, description, Img, href }) => (
 						<article key={title} className="flex max-w-xl flex-col md:items-start items-center justify-between">

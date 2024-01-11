@@ -46,12 +46,6 @@ const Navigations: FC = ({ direction }: { direction?: string }) => {
 				>
 					<Link href={'/delivery'}>Delivery</Link>
 				</motion.li>
-				<motion.li
-					whileHover={{ scale: 1.1 }}
-					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
-				>
-					<Link href={'/about'}>About us</Link>
-				</motion.li>
 
 				<motion.li
 					whileHover={{ scale: 1.1 }}
