@@ -13,10 +13,15 @@ module.exports = {
 				containerbg: 'rgba(255, 131, 0, 0.04)',
 				cartBg: '#282a2c',
 				cartItem: '#2e3033',
-				cartTotal: '#343739'
+				cartTotal: '#343739',
+				mild: '#EA580C',
+				mildLight: '#F15F19',
+				spicy: '#CA2211'
 			},
 			display: ['group-hover']
 		},
-		plugins: []
+		plugins: [
+			require('@tailwindcss/forms')
+		]
 	}
 }
