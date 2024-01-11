@@ -28,7 +28,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 				{showContactForm && <Contact />}
 				{!(adminMode && isAdmin(user)) && <Header />}
 				<main
-					className={`${!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4'
+					className={`${!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 md:px-0 pt-6 py-0'
 						} w-full h-auto`}
 					onClick={() => { }}
 				>
