@@ -4,7 +4,7 @@ import { MdShoppingBasket } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
-import { type FC } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { toggleCart } from '@/app/context/actionCreators'
 
 interface PropTypes {
@@ -13,6 +13,8 @@ interface PropTypes {
 
 const Navigations: FC<PropTypes> = ({ direction }) => {
 	const [{ cart }, dispatch] = useStateValue()
+	const [cartItemsCount, setCartItemsCount] = useState<number>(0)
+
 	const handleOpenCart = (): void => {
 		dispatch(toggleCart(true))
 	}
@@ -22,6 +24,12 @@ const Navigations: FC<PropTypes> = ({ direction }) => {
 	// 		showContactForm: !showContactForm
 	// 	})
 	// }
+
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+		setCartItemsCount(cart.length)
+	}, [cart])
+
 	return (
 		<div className="flex items-center gap-8">
 			<motion.ul
@@ -71,9 +79,9 @@ const Navigations: FC<PropTypes> = ({ direction }) => {
 				onClick={handleOpenCart}
 			>
 				<MdShoppingBasket className="text-2xl cursor-pointer" />
-				{cart?.length > 0 && (
+				{cartItemsCount > 0 && (
 					<div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-orange-600 flex items-center justify-center cursor-pointer">
-						<p className="text-sm text-white font-semibold">{cart.length}</p>
+						<p className="text-sm text-white font-semibold">{cartItemsCount}</p>
 					</div>
 				)}
 			</motion.div>
