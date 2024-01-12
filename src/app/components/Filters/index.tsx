@@ -22,7 +22,7 @@ const Filters: FC<Props> = async ({ categoryId, baseUrl }) => {
 	return (
 		<div
 			className={
-				'w-full py-10 flex items-center justify-start lg:justify-center  h-auto gap-4 md:gap-8  px-2  overflow-x-scroll scrollbar-hidden  scroll-smooth'
+				'w-full py-10 flex items-center justify-start md:justify-center  h-auto gap-4 md:gap-8  px-2  overflow-x-scroll scrollbar-hidden  scroll-smooth'
 			}
 		>
 			<Button
