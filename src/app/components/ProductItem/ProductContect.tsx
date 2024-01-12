@@ -9,24 +9,26 @@ const ProductContent: FC<{ productId: string }> = async ({ productId }) => {
 	return (
 		<div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
 			<div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-				<Image
-					width={500}
-					height={500}
-					src={product?.img_path}
-					alt={product?.name}
-					className="object-cover object-center"
-				/>
+				{product?.img_path && (
+					<Image
+						width={500}
+						height={500}
+						src={product.img_path}
+						alt={product.name}
+						className="object-cover object-center"
+					/>
+				)}
 			</div>
 			<div className="sm:col-span-8 lg:col-span-7">
 				<h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product?.name}</h2>
 				<section aria-labelledby="information-heading" className="mt-2">
-					<p className="text-2xl text-gray-900">{product?.price}$</p>
+					{product?.price && <p className="text-2xl text-gray-900">{product.price}$</p>}
 				</section>
 				<div className="mt-6 mb-3">
 					<h4 className="text-sm font-semibold leading-6 text-gray-900">Description</h4>
 					<span>{product?.description}</span>
 				</div>
-				<ProductAction />
+				<ProductAction product={product} />
 			</div>
 		</div>
 	)

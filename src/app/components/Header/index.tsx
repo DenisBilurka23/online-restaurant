@@ -8,19 +8,19 @@ import MobileNav from './mobile-nav'
 import Navigations from './Navigations'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { type FC, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 import LogoImg from '../../../../public/images/torontoSizzle_transparent.png'
 
-const Header = () => {
-	const [{ user }, dispatch] = useStateValue()
+const Header: FC = () => {
+	const [{ user }] = useStateValue()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isOpenMobileNav, setIsOpenMobileNav] = useState(false)
 
 	return (
-		<header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md py-1 md:p-3 md:px-4 lg:py-1 lg:px-16">
+		<header className="w-screen fixed z-40 bg-cardOverlay backdrop-blur-md py-1 md:p-3 md:px-4 lg:py-1 lg:px-16">
 			{/* Tablet and Desktop */}
 			<div className="hidden md:flex w-full justify-between items-center">
 				<Link href={'/'}>
@@ -31,7 +31,7 @@ const Header = () => {
 				</Link>
 				<Navigations />
 				{user ? (
-					<div className={`group flex items-center gap-3 px-3 py-1 rounded-lg`}>
+					<div className={'group flex items-center gap-3 px-3 py-1 rounded-lg'}>
 						<motion.div whileHover={{ scale: 1.1 }} className=" flex items-center justify-center">
 							<Image
 								src={user.photoURL || Avatar}
@@ -63,7 +63,9 @@ const Header = () => {
 						<motion.div
 							whileTap={{ scale: 0.9 }}
 							className=" flex items-center justify-center"
-							onClick={() => setIsOpenMobileNav(!isOpenMobileNav)}
+							onClick={() => {
+								setIsOpenMobileNav(!isOpenMobileNav)
+							}}
 						>
 							<HiOutlineMenuAlt2 className="text-headingColor text-4xl" />
 						</motion.div>
@@ -74,16 +76,15 @@ const Header = () => {
 							</motion.div>
 						</Link>
 						{user ? (
-							<div className={`flex items-center gap-3 px-3 py-1 rounded-lg relative`}>
-								<motion.div
-									whileHover={{ scale: 1.1 }}
-									className="group flex items-center justify-center"
-								>
+							<div className={'flex items-center gap-3 px-3 py-1 rounded-lg relative'}>
+								<motion.div whileHover={{ scale: 1.1 }} className="group flex items-center justify-center">
 									<Image
 										src={user?.photoURL ? user.photoURL : Avatar}
 										className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer"
 										alt="user-profile"
-										onClick={() => setIsOpen(!isOpen)}
+										onClick={() => {
+											setIsOpen(!isOpen)
+										}}
 									/>
 									<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
 										<RiArrowDropDownLine />

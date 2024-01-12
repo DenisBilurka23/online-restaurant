@@ -5,21 +5,23 @@ import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import { type FC } from 'react'
+import { toggleCart } from '@/app/context/actionCreators'
 
-const Navigations: FC = ({ direction }: { direction?: string }) => {
-	const [{ showContactForm, cartItems }, dispatch] = useStateValue()
-	const handleToggleCart = (): void => {
-		dispatch({
-			type: 'TOGGLE_CART',
-			showCart: true
-		})
+interface PropTypes {
+	direction?: string
+}
+
+const Navigations: FC<PropTypes> = ({ direction }) => {
+	const [{ cart }, dispatch] = useStateValue()
+	const handleOpenCart = (): void => {
+		dispatch(toggleCart(true))
 	}
-	const handleToggleContact = (): void => {
-		dispatch({
-			type: 'TOGGLE_CONTACT_FORM',
-			showContactForm: !showContactForm
-		})
-	}
+	// const handleToggleContact = (): void => {
+	// 	dispatch({
+	// 		type: 'TOGGLE_CONTACT_FORM',
+	// 		showContactForm: !showContactForm
+	// 	})
+	// }
 	return (
 		<div className="flex items-center gap-8">
 			<motion.ul
@@ -66,12 +68,12 @@ const Navigations: FC = ({ direction }: { direction?: string }) => {
 				whileTap={{ scale: 0.9 }}
 				whileHover={{ scale: 1.1 }}
 				className="relative flex items-center justify-center text-textColor"
-				onClick={handleToggleCart}
+				onClick={handleOpenCart}
 			>
 				<MdShoppingBasket className="text-2xl cursor-pointer" />
-				{cartItems && (
-					<div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center cursor-pointer">
-						<p className="text-sm text-white font-semibold">{cartItems.length}</p>
+				{cart?.length > 0 && (
+					<div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-orange-600 flex items-center justify-center cursor-pointer">
+						<p className="text-sm text-white font-semibold">{cart.length}</p>
 					</div>
 				)}
 			</motion.div>

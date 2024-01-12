@@ -15,8 +15,6 @@ import { GiTakeMyMoney } from 'react-icons/gi'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
-import { useStateValue } from '@/app/context/StateProvider'
-import { fetchFoodData } from '@/app/utils/functions'
 import Image from 'next/image'
 import { AssetUploader, Loader } from '@/app/components'
 
@@ -30,7 +28,6 @@ const AddFood = () => {
 	const [quantity, setQuantity] = useState('')
 	const [description, setDescription] = useState('')
 	const [loaderMessage, setLoadermessage] = useState('')
-	const [{ foodItems }, dispatch] = useStateValue()
 
 	const deleteImage = () => {
 		setLoadermessage('Removing Photo......')
@@ -55,7 +52,6 @@ const AddFood = () => {
 				}
 				clearForm()
 				setLoading(false)
-				fetchFoodData()
 				setLoadermessage('')
 				setLoading(false)
 			}
@@ -143,11 +139,7 @@ const AddFood = () => {
 									</div>
 								</>
 							) : (
-								<AssetUploader
-									action={setImage}
-									progressHandler={setLoadermessage}
-									promise={setLoading}
-								/>
+								<AssetUploader action={setImage} progressHandler={setLoadermessage} promise={setLoading} />
 							)}
 						</>
 					)}
