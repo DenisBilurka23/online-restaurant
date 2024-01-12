@@ -31,6 +31,11 @@ export interface Product {
 	img_path: string
 }
 
+export interface CartProductItem extends Product {
+	quantity: number
+	cartItemId: string
+}
+
 export interface ProductResponse extends Response {
 	product: Product
 }

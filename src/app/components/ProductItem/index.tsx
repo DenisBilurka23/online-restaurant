@@ -14,7 +14,12 @@ export const ProductItem: FC<{ product: ProductType }> = ({ product }) => {
 	current.set('productId', product.id.toString())
 
 	return (
-		<Link href={`${pathname}/?${current.toString()}`} key={product.id} className="group relative cursor-pointer">
+		<Link
+			scroll={false}
+			href={`${pathname}/?${current.toString()}`}
+			key={product.id}
+			className="group relative cursor-pointer"
+		>
 			<Product product={product} />
 		</Link>
 	)

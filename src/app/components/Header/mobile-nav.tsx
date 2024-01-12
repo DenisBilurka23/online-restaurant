@@ -7,14 +7,12 @@ import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 import { type FC } from 'react'
+import { toggleCart } from '@/app/context/actionCreators'
 
 const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
 	const [{ showContactForm, showCart, cartItems }, dispatch] = useStateValue()
 	const handleToggleCart = (): void => {
-		dispatch({
-			type: 'TOGGLE_CART',
-			showCart: !showCart
-		})
+		dispatch(toggleCart(!showCart))
 	}
 	const handleToggleContact = (): void => {
 		dispatch({
