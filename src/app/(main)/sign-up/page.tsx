@@ -1,12 +1,10 @@
 'use client'
 
-import { useState, ChangeEvent } from 'react'
-import { useStateValue } from '../../context/StateProvider'
+import { useState, type ChangeEvent } from 'react'
 import Image from 'next/image'
 
-import LogoImg from '../../../../public/images/torontoSizzle_transparent.png'
+import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import { useRouter } from 'next/navigation'
-
 
 const SignUp = (): JSX.Element => {
 	const router = useRouter()
@@ -34,7 +32,7 @@ const SignUp = (): JSX.Element => {
 	const EmailAuth = (e: ChangeEvent<HTMLInputElement>): void => {
 		e.preventDefault()
 
-		console.log('In Email Auth');
+		console.log('In Email Auth')
 
 		if (email.length > 10 && password.length > 5) {
 			// const user = null
@@ -126,7 +124,6 @@ const SignUp = (): JSX.Element => {
 										<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
 											Password
 										</label>
-
 									</div>
 									<div className="mt-2">
 										<input
@@ -154,7 +151,7 @@ const SignUp = (): JSX.Element => {
 							</form>
 
 							<p className="mt-10 text-center text-sm text-gray-500">
-								Existing Customer?{' '}You can sign in{' '}
+								Existing Customer? You can sign in{' '}
 								<a href="/sign-in" className="font-semibold leading-6 text-mild">
 									Here
 								</a>

@@ -1,11 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState, ChangeEvent } from 'react'
-// import { useStateValue } from '../../context/StateProvider'
+import { useState, type ChangeEvent } from 'react'
 import Image from 'next/image'
 
-import LogoImg from '../../../../public/images/torontoSizzle_transparent.png'
+import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 
 const SignIn = (): JSX.Element => {
 	const [email, setEmail] = useState<string>('')
@@ -21,11 +20,10 @@ const SignIn = (): JSX.Element => {
 
 	const router = useRouter()
 
-
 	const EmailAuth = (e: ChangeEvent<HTMLInputElement>): void => {
 		e.preventDefault()
 
-		console.log('In Email Auth');
+		console.log('In Email Auth')
 
 		if (email.length > 10 && password.length > 5) {
 			// const userData = [user, email]
@@ -35,7 +33,6 @@ const SignIn = (): JSX.Element => {
 			// })
 			// localStorage.setItem('user', JSON.stringify(userData))
 			router.push('/')
-
 		} else {
 			console.error('Required inputs are invalid, please try again')
 		}
@@ -50,9 +47,7 @@ const SignIn = (): JSX.Element => {
 							<div className="flex justify-center items-center">
 								<Image src={LogoImg} alt="Logo" width={100} height={100} />
 							</div>
-							<h2 className="mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-800">
-								Sign in
-							</h2>
+							<h2 className="mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-800">Sign in</h2>
 						</div>
 
 						<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
