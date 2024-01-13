@@ -1,12 +1,19 @@
+import { type FC } from 'react'
 import MenuSection from '@/app/components/Sections/Menu'
-import { type FunctionComponent } from 'react'
+import Banner from '@/app/components/Banner'
+import MenuBanner from '../../../../public/img/menu-banner.jpg'
 
-const Menu: FunctionComponent = () => {
+interface Props {
+	searchParams: { categoryId: string; productId: string }
+}
+
+const Category: FC<Props> = ({ searchParams }) => {
 	return (
 		<div className="flex w-full h-auto flex-col items-center justify-center">
-			<MenuSection />
+			<Banner img={MenuBanner} alt="banner" title="Explore Our Delicious Menu" center />
+			<MenuSection categoryId={searchParams.categoryId} productId={searchParams.productId} baseUrl="/menu" />
 		</div>
 	)
 }
 
-export default Menu
+export default Category

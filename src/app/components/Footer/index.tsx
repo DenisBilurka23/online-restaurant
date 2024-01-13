@@ -1,93 +1,111 @@
-import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs'
-
-import { Logo } from '../Assets'
-import React from 'react'
+import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import MotionImg from '@/app/components/MotionImg'
+import Image from 'next/image'
+import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
+import { type FC } from 'react'
 
-const Footer = () => {
-	return (
-		<footer className="p-4 bg-primary sm:p-6 w-full">
-			<div className="flex justify-center md:justify-start items-center">
-				<motion.div whileHover={{ rotate: [0, -10, 10, -10, 0] }} className="mb-3 md:mb-0">
-					<Link href="/" className="flex gap-8 items-center">
-						<MotionImg
-							whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-							src={Logo}
-							className="w-10 md:w-36 object-contain"
-							alt="Logo"
-						/>
-						<span className="self-center text-2xl font-semibold whitespace-nowrap text-headingColor">
-							Bentilzone
-						</span>
-					</Link>
-				</motion.div>
-			</div>
-			<hr className="my-2 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-			<div className="flex flex-col items-center justify-center md:flex-row md:justify-between">
-				<span className="text-sm text-gray-500 text-center dark:text-gray-400">
-					© {new Date().getFullYear()} Bentilzone™. All Rights Reserved.
-				</span>
-				<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0 md:text-xl">
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://qbentil.me"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsDribbble />
-					</motion.a>
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://github.com/qbentil"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsGithub />
-					</motion.a>
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://linkedin.com/in/bentil"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsLinkedin />
-					</motion.a>
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://twitter.com/themanbentil"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsTwitter />
-					</motion.a>
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://instagram.com/qbentil"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsInstagram />
-					</motion.a>
-					<motion.a
-						whileTap={{ scale: 1.1 }}
-						target={'_blank'}
-						rel="noreferrer"
-						href="https://facebook.com/qbentil"
-						className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-					>
-						<BsFacebook />
-					</motion.a>
+const Footer: FC = () => (
+	<div className="relative isolate overflow-hidden bg-white/75 opacity pt-14 sm:pt-14 lg:pt-8">
+		<div className="mx-auto max-w-7xl px-6 lg:px-8">
+			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+				<div className="max-w-xl lg:max-w-lg">
+					<Image src={LogoImg} alt="Logo" width={150} height={150} />
+					{/* <h2 className="text-3xl font-bold tracking-tight text-spicy sm:text-4xl">TorontoSizzle</h2> */}
+					<p className="mt-0 text-sm leading-8 text-gray-800">
+						Toronto-based restaurant established in 2001, which seamlessly blends traditional flavors with modern flair
+						to your doorsteps.
+					</p>
 				</div>
+				<dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 pt-8">
+					<div className="flex flex-col items-start">
+						<dt className="my-4 font-semibold text-mild">Quick Links</dt>
+						<dd className="mt-0 leading-7 text-gray-400">
+							<motion.a
+								whileTap={{ scale: 1.1 }}
+								target={'_blank'}
+								rel="noreferrer"
+								href="/menu"
+								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
+							>
+								Menu
+							</motion.a>
+						</dd>
+
+						<dd className="mt-0 leading-7 text-gray-400">
+							<motion.a
+								whileTap={{ scale: 1.1 }}
+								target={'_blank'}
+								rel="noreferrer"
+								href="/contact"
+								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
+							>
+								Contact
+							</motion.a>
+						</dd>
+
+						<dd className="mt-0 leading-7 text-gray-400">
+							<motion.a
+								whileTap={{ scale: 1.1 }}
+								target={'_blank'}
+								rel="noreferrer"
+								href="/delivery"
+								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
+							>
+								Delivery
+							</motion.a>
+						</dd>
+					</div>
+					<div className="flex flex-col items-start">
+						<dt className="my-4 font-semibold text-mild">Social Media</dt>
+
+						<div className="flex items-center">
+							<div className="rounded-md orange-700 p-1 ring-1 ring-orange-900/50 mr-4">
+								<motion.a
+									whileTap={{ scale: 1.1 }}
+									target={'_blank'}
+									rel="noreferrer"
+									href="https://facebook.com"
+									className="text-orange-700 h-10 w-10 rounded-full flex items-center justify-center"
+								>
+									<BsFacebook size={24} />
+								</motion.a>
+							</div>
+
+							<div className="rounded-md orange-700 p-1 ring-1 ring-orange-900/50">
+								<motion.a
+									whileTap={{ scale: 1.1 }}
+									target={'_blank'}
+									rel="noreferrer"
+									href="https://instagram.com"
+									className="text-orange-700 h-10 w-10 rounded-full flex items-center justify-center"
+								>
+									<BsInstagram size={24} />
+								</motion.a>
+							</div>
+						</div>
+					</div>
+				</dl>
 			</div>
-		</footer>
-	)
-}
+		</div>
+
+		<hr className="my-4 mx-10 border-gray-100 dark:border-gray-700 lg:my-8" />
+
+		<div className="flex flex-col items-center justify-center md:flex-row md:justify-between mx-10">
+			<span className="text-sm text-orange-700 text-center dark:text-gray-400">
+				© {new Date().getFullYear()} TorontoSizzle. All Rights Reserved.
+			</span>
+		</div>
+
+		<div className="flex left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+			<div className="flex flex-col items-center justify-center md:flex-row md:justify-between mx-10">
+				<span className="text-sm text-gray-400 text-center dark:text-gray-400">(647)123-4567</span>
+			</div>
+
+			<div className="flex flex-col items-center justify-center md:flex-row md:justify-between mx-10">
+				<span className="text-sm text-gray-400 text-center dark:text-gray-400">info@torontosizzle.ca</span>
+			</div>
+		</div>
+	</div>
+)
 
 export default Footer

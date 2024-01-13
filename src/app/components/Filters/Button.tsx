@@ -1,46 +1,47 @@
-import { motion } from 'framer-motion'
-import { MdOutlineFastfood } from 'react-icons/md'
-import { FoodCategory } from '../../../../types'
-const Button = ({ category, filter, setFilter }: { category: FoodCategory; filter: string; setFilter: any }) => {
+import { type Category } from '../../../../types'
+import { type FC } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+const Button: FC<{ category: Category; categoryId: string; url?: string }> = ({ categoryId, category, url }) => {
 	return (
-		<motion.div
-			onClick={() => setFilter(category.urlParam)}
-			//   whileHover={{ scale: 1.1 }}
+		<Link
+			scroll={false}
+			href={url ?? `?categoryId=${category.id}`}
 			whileTap={{ scale: 1.1 }}
 			className={`group ${
-				category.urlParam === filter ? 'hover:bg-btnOverlay bg-cartNumBg' : 'bg-btnOverlay hover:bg-cartNumBg'
-			} w-24 min-w-[6rem] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center duration-150 transition-all  ease-out`}
+				category.id === +categoryId
+					? 'hover:bg-btnOverlay bg-gradient-to-tr from-orange-400 to-orange-600'
+					: 'bg-btnOverlay hover:bg-gradient-to-tr from-orange-400 to-orange-600'
+			} min-w-28 h-36 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center duration-150 transition-all  ease-out`}
 		>
 			<div
-				className={`w-10 h-10 rounded-full ${
-					category.urlParam === filter
+				className={`w-20 h-20 rounded-full ${
+					category.id === +categoryId
 						? 'group-hover:bg-cartNumBg bg-btnOverlay'
 						: 'bg-cartNumBg group-hover:bg-btnOverlay'
 				}  flex items-center justify-center`}
 			>
-				{/* <MdOutlineFastfood
-
-        /> */}
 				<span
 					className={`${
-						category.urlParam === filter
+						category.id === +categoryId
 							? 'text-textColor group-hover:text-btnOverlay'
 							: 'group-hover:text-textColor text-btnOverlay'
 					} text-lg`}
 				>
-					{category.icon || <MdOutlineFastfood />}
+					<Image width={100} height={100} src={category.img_path} alt="Category image" className="rounded-full" />
 				</span>
 			</div>
 			<p
 				className={`text-base ${
-					category.urlParam === filter
+					category.id === +categoryId
 						? 'group-hover:text-textColor text-white'
 						: 'text-textColor group-hover:text-white'
 				} `}
 			>
 				{category.name}
 			</p>
-		</motion.div>
+		</Link>
 	)
 }
 

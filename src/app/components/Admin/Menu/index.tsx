@@ -1,21 +1,21 @@
 'use client'
 
 import { FaSearch } from 'react-icons/fa'
-import { SingleFoodItem } from '../../FoodItem'
 import React, { useState } from 'react'
 import { useStateValue } from '@/app/context/StateProvider'
-import { FoodItem } from '../../../../../types'
+import { type Product } from '../../../../../types'
+import ProductItem from '@/app/components/ProductItem'
 
 const Menu = () => {
 	const [{ foodItems }, dispatch] = useStateValue()
 	const [query, setQuery] = useState('')
-	const [filteredFoodItems, setFilteredFoodItems] = useState<FoodItem[]>(foodItems)
+	const [filteredFoodItems, setFilteredFoodItems] = useState<Product[]>(foodItems)
 
 	const filterFood = () => {
 		if (query.length === 0) {
 			setFilteredFoodItems(foodItems)
 		} else {
-			const filteredFoodItems = foodItems.filter((foodItem: FoodItem) =>
+			const filteredFoodItems = foodItems.filter((foodItem: Product) =>
 				foodItem.title.toLowerCase().includes(query.toLowerCase())
 			)
 			setFilteredFoodItems(filteredFoodItems)
@@ -34,7 +34,9 @@ const Menu = () => {
 					type="text"
 					placeholder="Search food"
 					value={query}
-					onChange={e => searchFood(e)}
+					onChange={e => {
+						searchFood(e)
+					}}
 				/>
 				{/* search button */}
 				<button className="flex items-center justify-center gap-3 text-orange-700 font-bold py-2 px-4 rounded-lg">
@@ -42,8 +44,8 @@ const Menu = () => {
 				</button>
 			</div>
 			<div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
-				{filteredFoodItems.map((item: FoodItem) => (
-					<SingleFoodItem key={item.id} item={item} col admin />
+				{filteredFoodItems.map((item: Product) => (
+					<ProductItem key={item.id} product={item} col admin />
 				))}
 			</div>
 		</div>

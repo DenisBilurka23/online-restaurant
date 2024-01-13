@@ -10,12 +10,8 @@ export const fetchSessionUser = () => {
 }
 export const fetchSessionCart = () => {
 	if (typeof window !== 'undefined') {
-		const cartInfo =
-			localStorage.getItem('cartItems') !== 'undefined'
-				? JSON.parse(localStorage.getItem('cartItems'))
-				: localStorage.clear()
-
-		return cartInfo ? cartInfo : []
+		const cartInfo = JSON.parse(localStorage.getItem('cart'))
+		return cartInfo || []
 	}
 }
 

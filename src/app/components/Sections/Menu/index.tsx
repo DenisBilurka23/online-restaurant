@@ -1,29 +1,24 @@
-'use client'
-
-import { useState } from 'react'
-import Container from '../../Container'
-import { FilterFood } from '@/app/utils/filters'
+import { type FC } from 'react'
 import Filters from '../../Filters'
-import { useStateValue } from '@/app/context/StateProvider'
 import { Title } from '@/app/components/Sections'
+import { type FoodCategory } from '../../../../../types'
+import Container from '@/app/components/Container'
+import { getCategory } from '@/app/api/fetch/categories'
 
-const MenuSection = ({ title }: { title?: string }) => {
-	const [scrollValue, setScrollValue] = useState(0)
-	const [{ foodItems }, dispatch] = useStateValue()
-	const [filter, setFilter] = useState<string>('all')
+const MenuSection: FC<{ categoryId: string; productId: string; baseUrl: string }> = async ({
+	categoryId,
+	productId,
+	baseUrl
+}) => {
+	const res: FoodCategory = await getCategory(categoryId)
 
 	return (
 		<section className="w-full my-5" id="menu">
 			<div className="w-full flex items-center justify-center">
-				<Title title={title || 'Our Hot Dishes'} center />
+				<Title title={res?.category?.name ?? 'Menu'} center />
 			</div>
-			<Filters filter={filter} setFilter={setFilter} />
-			<Container
-				className="bg-containerbg"
-				col
-				scrollOffset={scrollValue}
-				items={filter === 'all' ? foodItems : FilterFood(filter)}
-			/>
+			<Filters categoryId={categoryId} baseUrl={baseUrl} />
+			<Container productId={productId} categoryId={res?.category.id} />
 		</section>
 	)
 }
