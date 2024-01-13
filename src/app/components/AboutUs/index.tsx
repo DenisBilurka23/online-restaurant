@@ -4,7 +4,7 @@ import MainFeatureProd from '../../../../public/img/main-feature-prod.jpg'
 import SubFeatureProd from '../../../../public/img/sub-feature-prod.jpg'
 
 const AboutUs: FC = () => (
-	<div className="mx-auto mt-20 mb-40 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex">
+	<div className="mx-auto mt-20 mb-20 lg:mb-36 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex">
 		<div className="flex relative justify-center justify-between w-full">
 			<div className="hidden lg:block basis-2/5 mx-8">
 				<div className="rounded-lg">
