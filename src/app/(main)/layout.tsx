@@ -22,9 +22,8 @@ const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
 				{showContactForm && <Contact />}
 				{!(adminMode && isAdmin(user)) && <Header />}
 				<main
-					className={`${!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 md:px-0 pt-6 py-0'
-						} w-full h-auto`}
-					onClick={() => { }}
+					className={`${!(adminMode && isAdmin(user)) && 'mt-16 md:mt-16 md:px-0 pt-6 py-0'} w-full h-auto`}
+					onClick={() => {}}
 				>
 					{children}
 					{!(adminMode && isAdmin(user)) && <Footer />}
