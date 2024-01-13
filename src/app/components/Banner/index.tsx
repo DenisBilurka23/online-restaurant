@@ -7,12 +7,17 @@ interface propTypes {
 	alt: string
 	title: string
 	gradient?: boolean
+	center?: boolean
 }
 
-const Banner: FunctionComponent<propTypes> = ({ img, alt, title, gradient }) => {
+const Banner: FunctionComponent<propTypes> = ({ img, alt, title, gradient, center }) => {
 	return (
-		<div className="relative isolate overflow-hidden bg-gray-900 h-96 py-24 sm:py-32">
-			<Image src={img} alt={alt} className="absolute inset-0 -z-10 h-full w-full object-cover object-bottom" />
+		<div className="relative w-full isolate overflow-hidden bg-gray-900 h-vh-30 sm:h-vh-1/2 lg:h-vh-70">
+			<Image
+				src={img}
+				alt={alt}
+				className={`absolute inset-0 -z-10 h-full w-full object-cover object-${center ? 'center' : 'bottom'}`}
+			/>
 			{gradient ? (
 				<>
 					<div
@@ -43,7 +48,9 @@ const Banner: FunctionComponent<propTypes> = ({ img, alt, title, gradient }) => 
 			) : (
 				<div className="absolute right-0 left-0 top-0 bottom-0 bg-black opacity-20" />
 			)}
-			<Title styles="text-4xl sm:text-6xl text-white">{title}</Title>
+			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+				<Title styles="text-4xl sm:text-6xl text-white">{title}</Title>
+			</div>
 		</div>
 	)
 }

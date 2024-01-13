@@ -9,16 +9,16 @@ import {
 	MdOutlineProductionQuantityLimits
 } from 'react-icons/md'
 
-import { Categories } from '@/app/utils/categories'
 import CategoriesSelector from './CategoriesSelector'
 import { GiTakeMyMoney } from 'react-icons/gi'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
-import { useState } from 'react'
+import { type FC, useState } from 'react'
 import Image from 'next/image'
 import { AssetUploader, Loader } from '@/app/components'
+import { Categories } from '@/app/utils/categories'
 
-const AddFood = () => {
+const AddFood: FC = () => {
 	const [title, setTitle] = useState('')
 	const [calories, setCalories] = useState('')
 	const [price, setPrice] = useState('')

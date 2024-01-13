@@ -12,7 +12,7 @@ import { type FC, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
-import LogoImg from '../../../../public/images/torontoSizzle_transparent.png'
+import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 
 const Header: FC = () => {
 	const [{ user }] = useStateValue()
