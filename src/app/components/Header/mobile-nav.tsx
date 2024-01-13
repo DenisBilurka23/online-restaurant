@@ -1,13 +1,14 @@
 'use client'
 
 import { MdOutlineRestaurantMenu, MdShoppingBasket } from 'react-icons/md'
-import Logo from '../../../../public/img/logo.png'
+import Logo from '../../../../public/img/torontoSizzle_transparent.png'
 import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 import { type FC } from 'react'
 import { toggleCart } from '@/app/context/actionCreators'
+import { routes } from '@/app/utils/routes'
 
 const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
 	const [{ showContactForm, showCart, cartItems }, dispatch] = useStateValue()
@@ -51,33 +52,16 @@ const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any 
 				</motion.div>
 			</motion.div>
 			<div className={'flex items-center justify-center w-full  h-72 gap-10 flex-col'}>
-				<Link
-					onClick={() => setIsOpen(!isOpen)}
-					href={'/menu'}
-					className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
-				>
-					Menu
-				</Link>
-				<Link
-					onClick={() => setIsOpen(!isOpen)}
-					href={'/delivery'}
-					className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
-				>
-					Delivery
-				</Link>
-				<Link
-					onClick={() => setIsOpen(!isOpen)}
-					href={'/about'}
-					className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
-				>
-					About
-				</Link>
-				<p
-					onClick={handleToggleContact}
-					className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
-				>
-					Contact
-				</p>
+				{routes.map(({ title, link }) => (
+					<Link
+						key={link}
+						onClick={() => setIsOpen(!isOpen)}
+						href={link}
+						className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10"
+					>
+						{title}
+					</Link>
+				))}
 			</div>
 
 			<Link href={'/'} onClick={() => setIsOpen(!isOpen)} className="flex items-center  justify-center w-full">
@@ -86,7 +70,7 @@ const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any 
 					whileHover={{ scale: 1.1 }}
 					className="flex items-center gap-2 cursor-pointer"
 				>
-					<Image src={Logo} alt="Logo" className="w-16 object-cover" />
+					<Image src={Logo} alt="Toronto Sizzle" className="w-16 object-cover" />
 					<p className="text-headingColor text-3xl font-bold">TorontoSizzle</p>
 				</motion.div>
 			</Link>

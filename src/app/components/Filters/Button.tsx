@@ -6,6 +6,7 @@ import Link from 'next/link'
 const Button: FC<{ category: Category; categoryId: string; url?: string }> = ({ categoryId, category, url }) => {
 	return (
 		<Link
+			scroll={false}
 			href={url ?? `?categoryId=${category.id}`}
 			whileTap={{ scale: 1.1 }}
 			className={`group ${
