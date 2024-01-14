@@ -1,9 +1,9 @@
 import { type FunctionComponent } from 'react'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import Title from '@/app/components/Title'
 
 interface propTypes {
-	img: HTMLImageElement
+	img: StaticImageData
 	alt: string
 	title: string
 	gradient?: boolean

@@ -1,20 +1,13 @@
 import Button from './Button'
-import { type Category, type FoodCategories } from '../../../../types'
+import { type Category } from '../../../../types'
 import { type FC } from 'react'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
+import { getCategories } from '@/app/api/fetch/categories'
+
 
 interface Props {
 	categoryId: string
 	baseUrl: string
-}
-
-const getCategories: () => Promise<FoodCategories> = async () => {
-	const res = await fetch('http://localhost:3000/api/categories', { next: { revalidate: 5 } })
-	if (!res.ok) {
-		throw new Error('Failed to fetch data')
-	}
-
-	return await res.json()
 }
 
 const Filters: FC<Props> = async ({ categoryId, baseUrl }) => {
