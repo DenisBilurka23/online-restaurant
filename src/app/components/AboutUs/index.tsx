@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import Image from 'next/Image'
+import Image from 'next/image'
 import MainFeatureProd from '../../../../public/img/main-feature-prod.jpg'
 import SubFeatureProd from '../../../../public/img/sub-feature-prod.jpg'
 
