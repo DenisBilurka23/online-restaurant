@@ -22,7 +22,7 @@ const ProductContent: FC<{ productId: string }> = async ({ productId }) => {
 			<div className="sm:col-span-8 lg:col-span-7">
 				<h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product?.name}</h2>
 				<section aria-labelledby="information-heading" className="mt-2">
-					{product?.price && <p className="text-2xl text-gray-900">{product.price}$</p>}
+					{product?.price && <p className="text-2xl text-gray-900">${product.price}</p>}
 				</section>
 				<div className="mt-6 mb-3">
 					<h4 className="text-sm font-semibold leading-6 text-gray-900">Description</h4>

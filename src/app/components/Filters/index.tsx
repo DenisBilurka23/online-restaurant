@@ -1,6 +1,7 @@
 import Button from './Button'
 import { type Category, type FoodCategories } from '../../../../types'
 import { type FC } from 'react'
+import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 
 interface Props {
 	categoryId: string
@@ -29,9 +30,8 @@ const Filters: FC<Props> = async ({ categoryId, baseUrl }) => {
 				categoryId={categoryId}
 				category={{
 					id: 0,
-					name: 'Menu',
-					img_path:
-						'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+					name: 'All',
+					img_path: LogoImg
 				}}
 				url={baseUrl}
 			/>
