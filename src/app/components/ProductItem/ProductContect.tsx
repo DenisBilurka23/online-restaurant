@@ -26,7 +26,7 @@ const ProductContent: FC<{ productId: string }> = async ({ productId }) => {
 				</section>
 				<div className="mt-6 mb-3">
 					<h4 className="text-sm font-semibold leading-6 text-gray-900">Description</h4>
-					<span>{product?.description}</span>
+					<span>{product?.abstract}</span>
 				</div>
 				<ProductAction product={product} />
 			</div>
