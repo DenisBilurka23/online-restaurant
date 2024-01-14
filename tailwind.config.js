@@ -17,7 +17,8 @@ module.exports = {
 				mild: '#EA580C',
 				mildLight: '#F15F19',
 				spicy: '#CA2211',
-				beige: '#FAF7F7'
+				beige: '#FAF7F7',
+				white: '#FFF'
 			},
 			display: ['group-hover'],
 			height: {

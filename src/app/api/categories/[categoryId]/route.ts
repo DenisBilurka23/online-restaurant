@@ -13,25 +13,25 @@ export const GET: RequestType = async (request, { params }) => {
 	const categories = [
 		{
 			id: 1,
-			name: 'Appetitizer',
+			name: 'Appetizers',
 			img_path:
 				'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 		},
 		{
 			id: 2,
-			name: 'Drinks',
+			name: 'Soups & Noodles',
 			img_path:
 				'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 		},
 		{
 			id: 3,
-			name: 'Desserts',
+			name: 'Main Courses',
 			img_path:
 				'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 		},
 		{
 			id: 4,
-			name: 'Soups',
+			name: 'Drinks',
 			img_path:
 				'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 		}

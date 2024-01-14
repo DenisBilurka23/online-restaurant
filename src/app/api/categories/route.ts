@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
 import { type FoodCategories } from '../../../../types'
+import AppetizerCatImg from '../../../../public/img/categories/gyoza.jpg'
+import SoupAndNoodleCatImg from '../../../../public/img/categories/kimchi_Jjigae.png'
+import MainCourseCatImg from '../../../../public/img/categories/bibimbap.jpg'
+import SakeCatImg from '../../../../public/img/categories/sake.jpg'
 
 export const GET: () => Promise<NextResponse<FoodCategories>> = async () => {
 	const json = {
@@ -9,27 +13,23 @@ export const GET: () => Promise<NextResponse<FoodCategories>> = async () => {
 		categories: [
 			{
 				id: 1,
-				name: 'Appetitizer',
-				img_path:
-					'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+				name: 'Appetizers',
+				img_path: AppetizerCatImg
 			},
 			{
 				id: 2,
-				name: 'Drinks',
-				img_path:
-					'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+				name: 'Soups & Noodles',
+				img_path: SoupAndNoodleCatImg
 			},
 			{
 				id: 3,
-				name: 'Desserts',
-				img_path:
-					'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+				name: 'Main Courses',
+				img_path: MainCourseCatImg
 			},
 			{
 				id: 4,
-				name: 'Soups',
-				img_path:
-					'https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+				name: 'Drinks',
+				img_path: SakeCatImg
 			}
 		]
 	}
