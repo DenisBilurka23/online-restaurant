@@ -72,7 +72,7 @@ export const products = [
 	},
 	{
 		id: 7,
-		name: 'Bibimbap',
+		name: 'Makgeolli',
 		price: 11.99,
 		abstract: 'Korean rice wine.',
 		description: 'Korean rice wine.',
