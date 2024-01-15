@@ -1,15 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { type Products } from '../../../../types'
 
-import GyozaImg from '../../../../public/img/products/gyoza.jpg'
-import KimbapImg from '../../../../public/img/products/kimbap.jpg'
-import KimchiJjigaeImg from '../../../../public/img/products/kimchi_Jjigae.png'
-import TonkotsuRamenImg from '../../../../public/img/products/tonkotsu_ramen.jpg'
-import OkonomiyakiImg from '../../../../public/img/products/okonomiyaki.jpg'
-import BibimbapImg from '../../../../public/img/products/bibimbap.jpg'
-import MakgeolliImg from '../../../../public/img/products/makgeolli.jpg'
-import SakeImg from '../../../../public/img/products/sake.jpg'
-
 export const products = [
 	{
 		id: 1,
@@ -17,7 +8,7 @@ export const products = [
 		price: 9.99,
 		abstract: 'Pan-fried or steamed dumplings with a choice of pork or vegetable filling.',
 		description: 'Pan-fried or steamed dumplings with a choice of pork or vegetable filling.',
-		img_path: GyozaImg,
+		img_path: '/img/products/gyoza.jpg',
 		category_id: 1,
 		category_name: 'Appetizers',
 		product_status: 'in stock'
@@ -28,7 +19,7 @@ export const products = [
 		price: 12.99,
 		abstract: 'Korean rice rolls with vegetables, choice of bulgogi beef, or spicy tuna.',
 		description: 'Korean rice rolls with vegetables, choice of bulgogi beef, or spicy tuna.',
-		img_path: KimbapImg,
+		img_path: '/img/products/kimbap.jpg',
 		category_id: 1,
 		category_name: 'Appetizers',
 		product_status: 'in stock'
@@ -63,7 +54,7 @@ export const products = [
 			'Japanese savory pancake made with a batter of flour, grated yam, shredded cabbage, and various ingredients like meat or seafood.',
 		description:
 			'Japanese savory pancake made with a batter of flour, grated yam, shredded cabbage, and various ingredients like meat or seafood.',
-		img_path: OkonomiyakiImg,
+		img_path: '/img/products/okonomiyaki.jpg',
 		category_id: 3,
 		category_name: 'Main Courses',
 		product_status: 'in stock'
@@ -74,7 +65,7 @@ export const products = [
 		price: 18.99,
 		abstract: 'Mixed rice bowl with assorted vegetables, a fried egg, and choice of meat.',
 		description: 'Mixed rice bowl with assorted vegetables, a fried egg, and choice of meat.',
-		img_path: BibimbapImg,
+		img_path: '/img/products/bibimbap.jpg',
 		category_id: 3,
 		category_name: 'Main Courses',
 		product_status: 'in stock'
@@ -85,7 +76,7 @@ export const products = [
 		price: 11.99,
 		abstract: 'Korean rice wine.',
 		description: 'Korean rice wine.',
-		img_path: MakgeolliImg,
+		img_path: '/img/products/makgeolli.jpg',
 		category_id: 4,
 		category_name: 'Drinks',
 		product_status: 'in stock'
@@ -96,35 +87,12 @@ export const products = [
 		price: 49.99,
 		abstract: 'Traditional Japanese rice wine',
 		description: 'Traditional Japanese rice wine',
-		img_path: SakeImg,
+		img_path: '/img/products/sake.jpg',
 		category_id: 4,
 		category_name: 'Drinks',
 		product_status: 'in stock'
 	}
 ]
-
-// {
-// 		id: 4,
-// 		name: 'Deep-Dish Pizza',
-// 		price: 50,
-// 		abstract: 'some abstruct',
-// 		description: 'some description',
-// 		img_path: 'https://pngfre.com/wp-content/uploads/pizza-png-from-pngfre-5-1024x517.png',
-// 		category_id: 2,
-// 		category_name: 'pizza',
-// 		product_status: 'in stock'
-// 	},
-// 	{
-// 		id: 5,
-// 		name: 'York-style Pizza',
-// 		price: 100,
-// 		abstract: 'some abstruct',
-// 		description: 'some description',
-// 		img_path: 'https://pngfre.com/wp-content/uploads/pizza-png-from-pngfre-5-1024x517.png',
-// 		category_id: 3,
-// 		category_name: 'pizza',
-// 		product_status: 'in stock'
-// 	},
 
 export const GET: (request: NextRequest) => Promise<NextResponse<Products>> = async request => {
 	const categoryId = request.nextUrl.searchParams.get('categoryId')
