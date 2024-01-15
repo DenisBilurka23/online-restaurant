@@ -1,8 +1,8 @@
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import { type FC } from 'react'
+import MotionLink from '@/app/components/MotionLink'
 
 const Footer: FC = () => (
 	<div className="relative isolate overflow-hidden bg-white/75 opacity pt-14 sm:pt-14 lg:pt-8">
@@ -10,7 +10,6 @@ const Footer: FC = () => (
 			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
 				<div className="max-w-xl lg:max-w-lg">
 					<Image src={LogoImg} alt="Logo" width={150} height={150} />
-					{/* <h2 className="text-3xl font-bold tracking-tight text-spicy sm:text-4xl">TorontoSizzle</h2> */}
 					<p className="mt-0 text-sm leading-8 text-gray-800">
 						Toronto-based restaurant established in 2001, which seamlessly blends traditional flavors with modern flair
 						to your doorsteps.
@@ -20,39 +19,33 @@ const Footer: FC = () => (
 					<div className="flex flex-col items-start">
 						<dt className="my-4 font-semibold text-mild">Quick Links</dt>
 						<dd className="mt-0 leading-7 text-gray-400">
-							<motion.a
+							<MotionLink
 								whileTap={{ scale: 1.1 }}
-								target={'_blank'}
-								rel="noreferrer"
 								href="/menu"
 								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 							>
 								Menu
-							</motion.a>
+							</MotionLink>
 						</dd>
 
 						<dd className="mt-0 leading-7 text-gray-400">
-							<motion.a
+							<MotionLink
 								whileTap={{ scale: 1.1 }}
-								target={'_blank'}
-								rel="noreferrer"
 								href="/contact"
 								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 							>
 								Contact
-							</motion.a>
+							</MotionLink>
 						</dd>
 
 						<dd className="mt-0 leading-7 text-gray-400">
-							<motion.a
+							<MotionLink
 								whileTap={{ scale: 1.1 }}
-								target={'_blank'}
-								rel="noreferrer"
 								href="/delivery"
 								className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 							>
 								Delivery
-							</motion.a>
+							</MotionLink>
 						</dd>
 					</div>
 					<div className="flex flex-col items-start">
@@ -60,27 +53,23 @@ const Footer: FC = () => (
 
 						<div className="flex items-center">
 							<div className="rounded-md orange-700 p-1 ring-1 ring-orange-900/50 mr-4">
-								<motion.a
+								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									target={'_blank'}
-									rel="noreferrer"
 									href="https://facebook.com"
 									className="text-orange-700 h-10 w-10 rounded-full flex items-center justify-center"
 								>
 									<BsFacebook size={24} />
-								</motion.a>
+								</MotionLink>
 							</div>
 
 							<div className="rounded-md orange-700 p-1 ring-1 ring-orange-900/50">
-								<motion.a
+								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									target={'_blank'}
-									rel="noreferrer"
 									href="https://instagram.com"
 									className="text-orange-700 h-10 w-10 rounded-full flex items-center justify-center"
 								>
 									<BsInstagram size={24} />
-								</motion.a>
+								</MotionLink>
 							</div>
 						</div>
 					</div>
