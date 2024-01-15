@@ -39,7 +39,7 @@ export const products = [
 		price: 15.99,
 		abstract: 'Choice of miso, shoyu, or shio broth with options like pork belly, chicken, or tofu.',
 		description: 'Choice of miso, shoyu, or shio broth with options like pork belly, chicken, or tofu.',
-		img_path: TonkotsuRamenImg,
+		img_path: '/img/products/tonkotsu_ramen.jpg',
 		category_id: 2,
 		category_name: 'Soups & Noodles',
 		product_status: 'in stock'
@@ -50,7 +50,7 @@ export const products = [
 		price: 13.99,
 		abstract: 'Spicy Korean kimchi stew with tofu, pork, and vegetables.',
 		description: 'Spicy Korean kimchi stew with tofu, pork, and vegetables.',
-		img_path: KimchiJjigaeImg,
+		img_path: '/img/products/kimchi_Jjigae.png',
 		category_id: 2,
 		category_name: 'Soups & Noodles',
 		product_status: 'in stock'
