@@ -8,8 +8,9 @@ import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { type ChangeEvent, type FC, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
-import { AssetUploader, Loader } from '../../components'
 import Image from 'next/image'
+import AssetUploader from '@/app/components/Upload'
+import Loader from '@/app/components/Loader'
 
 interface User {
 	displayName?: string

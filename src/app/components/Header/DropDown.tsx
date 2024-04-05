@@ -3,15 +3,16 @@
 import { motion } from 'framer-motion'
 import { FaUserCog } from 'react-icons/fa'
 import { MdLogout } from 'react-icons/md'
-import { RiAdminLine } from 'react-icons/ri'
 import { useStateValue } from '../../context/StateProvider'
-import { isAdmin, logout, ToggleAdminMode } from '../../utils/functions'
+import { logout } from '../../utils/functions'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const DropDown = ({ user }: { user: any }) => {
-	const [{}, dispatch] = useStateValue()
+	const [_, dispatch] = useStateValue()
 	const router = useRouter()
+
+	const handleLogout = async () => await logout(user, dispatch, router)
 
 	return (
 		<motion.div
@@ -23,16 +24,6 @@ const DropDown = ({ user }: { user: any }) => {
 			<p className="px-10 py-2 flex items-center gap-3 bg-slate-100 transition-all duration-100 capitalize ease-in-out text-base text-headingColor">
 				{user?.displayName || user?.email}
 			</p>
-			{isAdmin(user) && (
-				<Link
-					className="cursor-pointer px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-textColor"
-					href={'/admin'}
-					onClick={() => ToggleAdminMode(dispatch, true)}
-				>
-					Administrator
-					<RiAdminLine />
-				</Link>
-			)}
 			<Link
 				href={'/profile'}
 				className="px-10 py-2 flex items-center gap-3 bg-slate-100 transition-all duration-100 ease-in-out text-base text-headingColor"
@@ -41,7 +32,7 @@ const DropDown = ({ user }: { user: any }) => {
 			</Link>
 			<p
 				className="cursor-pointer px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-textColor"
-				onClick={() => logout(user, dispatch, router)}
+				onClick={handleLogout}
 			>
 				Logout
 				<MdLogout />

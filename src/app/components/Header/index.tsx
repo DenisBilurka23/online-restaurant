@@ -16,8 +16,11 @@ import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 
 const Header: FC = () => {
 	const [{ user }] = useStateValue()
-	const [isOpen, setIsOpen] = useState(false)
-	const [isOpenMobileNav, setIsOpenMobileNav] = useState(false)
+	const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
+	const [mobileNavOpen, setMobileNavOpen] = useState(false)
+
+	const toggleMobileDropdown = () => setMobileDropdownOpen(!mobileDropdownOpen)
+	const toggleMobileNav = () => setMobileNavOpen(!mobileNavOpen)
 
 	return (
 		<header className="w-screen fixed z-40 bg-cardOverlay backdrop-blur-md py-1 md:p-3 md:px-4 lg:py-1 lg:px-16">
@@ -56,16 +59,14 @@ const Header: FC = () => {
 				animate={{ opacity: 1, x: 0 }}
 				exit={{ opacity: 0, x: 200 }}
 			>
-				{isOpenMobileNav ? (
-					<MobileNav isOpen={isOpenMobileNav} setIsOpen={setIsOpenMobileNav} />
+				{mobileNavOpen ? (
+					<MobileNav isOpen={mobileNavOpen} setIsOpen={toggleMobileNav} />
 				) : (
 					<div className="p-5 flex items-center justify-between w-full">
 						<motion.div
 							whileTap={{ scale: 0.9 }}
 							className=" flex items-center justify-center"
-							onClick={() => {
-								setIsOpenMobileNav(!isOpenMobileNav)
-							}}
+							onClick={() => setMobileNavOpen(!mobileNavOpen)}
 						>
 							<HiOutlineMenuAlt2 className="text-headingColor text-4xl" />
 						</motion.div>
@@ -82,14 +83,12 @@ const Header: FC = () => {
 										src={user?.photoURL ? user.photoURL : Avatar}
 										className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer"
 										alt="user-profile"
-										onClick={() => {
-											setIsOpen(!isOpen)
-										}}
+										onClick={toggleMobileDropdown}
 									/>
 									<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
 										<RiArrowDropDownLine />
 									</p>
-									{isOpen && <DropDown user={user} />}
+									{mobileDropdownOpen && <DropDown user={user} />}
 								</motion.div>
 							</div>
 						) : (
