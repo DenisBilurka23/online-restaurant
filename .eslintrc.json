@@ -18,10 +18,18 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/no-misused-promises": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/no-confusing-void-expression": [
+      "off",
+      {
+        "ignoreArrowShorthand": true
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
     "indent": [
       "error",
       "tab"

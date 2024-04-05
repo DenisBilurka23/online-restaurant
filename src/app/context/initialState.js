@@ -1,4 +1,4 @@
-import { fetchSessionUser, fetchSessionUserMode, fetchSessionCart } from '../utils/fetchSessionData'
+import { fetchSessionUser, fetchSessionUserMode, fetchSessionCart } from '../utils/fetchSessionData.ts'
 
 const sessionUser = fetchSessionUser()
 const sessionUserMode = fetchSessionUserMode()

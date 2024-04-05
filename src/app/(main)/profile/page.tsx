@@ -6,48 +6,50 @@ import { MdOutlineDataSaverOn, MdDeleteOutline } from 'react-icons/md'
 
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
-import { useState } from 'react'
+import { type ChangeEvent, type FC, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import { AssetUploader, Loader } from '../../components'
-import { updateUserData } from '../../utils/functions'
 import Image from 'next/image'
 
-const UpdateProfile = () => {
-	const [{ user }, dispatch] = useStateValue()
-	const [displayName, setDisplayName] = useState(user?.displayName)
-	// const [email, setEmail] = useState(user.email)
-	const [photoURL, setPhotoURL] = useState(user?.photoURL)
-	const [loading, setLoading] = useState(false)
-	const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber)
-	const [btnText, setBtnText] = useState('Save')
-	const [loaderMessage, setLoadermessage] = useState('')
+interface User {
+	displayName?: string
+	photoURL?: string
+	phoneNumber?: string
+}
 
-	const deleteImage = async () => {
-		setLoadermessage('Removing Photo......')
-	}
-	const saveChanges = async () => {
+const UpdateProfile: FC = () => {
+	const [{ user }] = useStateValue<User>()
+	const [displayName, setDisplayName] = useState<any>(user?.displayName)
+	const [photoURL, setPhotoURL] = useState<any>(user?.photoURL)
+	const [loading, setLoading] = useState<boolean>(false)
+	const [phoneNumber, setPhoneNumber] = useState<any>(user?.phoneNumber || '')
+	const [btnText, setBtnText] = useState<string>('Save')
+	const [loaderMessage, setLoaderMessage] = useState<string>('')
+
+	const deleteImage = async (): Promise<void> => setLoaderMessage('Removing Photo......')
+
+	const handleSetName = e => setDisplayName(e.target.value)
+
+	const handleSetNumber = (e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(validateNumber(e.target.value))
+
+	const saveChanges = async (): Promise<void> => {
 		setBtnText('Saving....')
-		if (displayName.lenth < 0 || phoneNumber.length !== 10) {
+		if (displayName?.length < 0 || phoneNumber?.length !== 10) {
 			toast.error('Fill out fields correctly')
 			setBtnText('Save')
 		} else {
-			const data = {
-				...user,
-				displayName,
-				phoneNumber,
-				photoURL
-			}
-			await updateUserData()
+			// await updateUserData()
 			setBtnText('Save')
 		}
 	}
 
-	const updatePhotoUrl = async (newUrl: string) => {
+	const updatePhotoUrl = async (newUrl: string): Promise<void> => {
 		setPhotoURL(newUrl)
 	}
 
-	const validateNumber = (value: any) => {
-		if (isNaN(value)) {
+	const validateNumber = (value: string): string => {
+		const numericValue = parseFloat(value)
+		if (isNaN(numericValue)) {
 			toast.error('Please enter a valid phone number', { toastId: 123 })
 			return ''
 		}
@@ -65,11 +67,10 @@ const UpdateProfile = () => {
 						placeholder="Enter full name"
 						autoFocus
 						className="h-full w-full  bg-transparent pl-2 text-textColor outline-none border-none placeholder:text-gray-400"
-						value={displayName}
-						onChange={e => setDisplayName(e.target.value)}
+						value={displayName || ''}
+						onChange={handleSetName}
 					/>
 				</div>
-
 				<div className="w-full flex flex-col md:flex-row items-center gap-3">
 					<div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
 						<BsPhone className="text-gray-600 text-2xl" />
@@ -79,7 +80,7 @@ const UpdateProfile = () => {
 							placeholder="Phone"
 							className="h-full w-full  bg-transparent pl-2 text-textColor outline-none border-none placeholder:text-gray-400"
 							value={phoneNumber}
-							onChange={e => setPhoneNumber(validateNumber(e.target.value))}
+							onChange={handleSetNumber}
 						/>
 					</div>
 				</div>
@@ -91,38 +92,29 @@ const UpdateProfile = () => {
 							{photoURL ? (
 								<>
 									<div className="relative h-full">
-										<Image
-											src={photoURL}
-											alt="uploaded food"
-											className="w-full h-full object-cover"
-										/>
+										<Image src={photoURL} alt="uploaded food" className="w-full h-full object-cover" />
 										<motion.button
 											whileTap={{ scale: 1.1 }}
 											whileHover={{ scale: 1.2 }}
 											title="Remove Photo"
 											className="absolute bottom-3 right-3 rounded-full p-2 md:p-5 bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
-											onClick={() => deleteImage()}
+											onClick={deleteImage}
 										>
 											<MdDeleteOutline className="text-white" />
 										</motion.button>
 									</div>
 								</>
 							) : (
-								<AssetUploader
-									action={updatePhotoUrl}
-									progressHandler={setLoadermessage}
-									promise={setLoading}
-								/>
+								<AssetUploader action={updatePhotoUrl} progressHandler={setLoaderMessage} promise={setLoading} />
 							)}
 						</>
 					)}
 				</div>
-
 				<div className="w-full flex items-center justify-center">
 					<motion.button
 						whileHover={{ scale: 1.1 }}
 						className="ml-0 flex justify-center items-center gap-2 flex-row-reverse md:ml-auto w-full md:w-auto border-none outline-none rounded bg-orange-500 px-12 py-2 text-lg text-white"
-						onClick={() => saveChanges()}
+						onClick={saveChanges}
 					>
 						<MdOutlineDataSaverOn /> {btnText}
 					</motion.button>
