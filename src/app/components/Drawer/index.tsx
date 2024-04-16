@@ -1,7 +1,7 @@
-import { type FC, Fragment } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-const Drawer: FC = ({ direction, children, show, onClose }) => (
+const Drawer = ({ direction, children, show, onClose }) => (
 	<Transition.Root show={show} as={Fragment}>
 		<Dialog as="div" className="relative z-50" onClose={onClose}>
 			<Transition.Child

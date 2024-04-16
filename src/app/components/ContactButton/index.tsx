@@ -1,9 +1,10 @@
-import { type FC } from 'react'
+'use client'
+
 import { useStateValue } from '@/app/context/StateProvider'
 import { toggleContactForm } from '@/app/context/actionCreators'
 import { IoChatboxEllipsesOutline } from 'react-icons/io5'
 
-const ContactButton: FC = () => {
+const ContactButton = () => {
 	const [_, dispatch] = useStateValue()
 
 	const handleToggleContactForm = (): void => dispatch(toggleContactForm(true))

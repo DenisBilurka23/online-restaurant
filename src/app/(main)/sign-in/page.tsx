@@ -2,10 +2,9 @@ import Image from 'next/image'
 
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import SignInForm from '@/app/(main)/sign-in/SignInForm'
-import { type FC } from 'react'
 import Link from 'next/link'
 
-const SignIn: FC = () => (
+const SignIn = () => (
 	<section className="w-full h-auto ">
 		<div className="container w-full h-full px-6 py-12 lg:px-8 m-auto">
 			<div className="sm:mx-auto sm:w-full sm:max-w-sm">

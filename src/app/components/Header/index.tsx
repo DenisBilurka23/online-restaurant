@@ -8,13 +8,13 @@ import MobileNav from './mobile-nav'
 import Navigations from './Navigations'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { motion } from 'framer-motion'
-import { type FC, useState } from 'react'
+import { useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 
-const Header: FC = () => {
+const Header = () => {
 	const [{ user }] = useStateValue()
 	const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
 	const [mobileNavOpen, setMobileNavOpen] = useState(false)

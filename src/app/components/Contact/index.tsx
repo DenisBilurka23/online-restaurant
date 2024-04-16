@@ -1,3 +1,5 @@
+'use client'
+
 import ContactHeader from './header'
 import Form from './form'
 import Drawer from '@/app/components/Drawer'

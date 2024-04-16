@@ -6,21 +6,16 @@ import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
-import { type FC } from 'react'
 import { toggleCart } from '@/app/context/actionCreators'
 import { routes } from '@/app/utils/routes'
 
-const MobileNav: FC = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
-	const [{ showContactForm, showCart, cartItems }, dispatch] = useStateValue()
+const MobileNav = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) => {
+	const [{ showCart, cartItems }, dispatch] = useStateValue()
+
 	const handleToggleCart = (): void => {
 		dispatch(toggleCart(!showCart))
 	}
-	const handleToggleContact = (): void => {
-		dispatch({
-			type: 'TOGGLE_CONTACT_FORM',
-			showContactForm: !showContactForm
-		})
-	}
+
 	return (
 		<div className="flex flex-col bg-cardOverlay backdrop-blur-sm items-start justify-start gap-16 w-screen h-screen  overflow-y-hidden  z-50 overflow-hidden ">
 			<motion.div className="flex items-center justify-between w-screen h-24  px-10">

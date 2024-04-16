@@ -1,16 +1,9 @@
-import { actionTypes } from '@/app/context/reducer'
+import { setCart, setUser } from '@/app/context/actionCreators'
 
 export const logout = async (user: any, dispatch: any, router: any) => {
 	if (user) {
-		dispatch({
-			type: actionTypes.SET_USER,
-			user: null
-		})
-		dispatch({
-			type: actionTypes.SET_CART,
-			cartItems: []
-		})
-
+		dispatch(setUser(null))
+		dispatch(setCart([]))
 		localStorage.removeItem('user')
 		router.push('/')
 	} else {

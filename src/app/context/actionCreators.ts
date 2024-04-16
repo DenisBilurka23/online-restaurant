@@ -1,5 +1,5 @@
 import { actionTypes } from '@/app/context/reducer'
-import { type cartItems } from '../../../types'
+import { type cartItems, type User } from '../../../types'
 
 export const toggleCart: (showCart: boolean) => { type: string; showCart: boolean } = showCart => ({
 	type: actionTypes.TOGGLE_CART,
@@ -17,4 +17,9 @@ export const toggleContactForm: (showContactForm: boolean) => {
 export const setCart: (cartItems: cartItems[]) => { type: string; cartItems: cartItems[] } = cartItems => ({
 	type: actionTypes.SET_CART,
 	cartItems
+})
+
+export const setUser: (user: User | null) => { type: string; user: User | null } = user => ({
+	type: actionTypes.SET_USER,
+	user
 })

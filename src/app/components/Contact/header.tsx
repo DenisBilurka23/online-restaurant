@@ -1,9 +1,8 @@
 'use client'
 
 import { MdOutlineKeyboardBackspace, MdOutlineMessage } from 'react-icons/md'
-import { type FC } from 'react'
 
-const ContactHeader: FC = ({ onContactClose }) => {
+const ContactHeader = ({ onContactClose }) => {
 	return (
 		<div className="w-full flex flex-row-reverse items-center bg-white justify-between px-4 py-2 cursor-pointer">
 			<div onClick={onContactClose}>

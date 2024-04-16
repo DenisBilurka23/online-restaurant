@@ -54,3 +54,7 @@ export interface cartItem {
 export interface cartItems {
 	items: cartItem[]
 }
+
+export interface User {
+	email: string
+}

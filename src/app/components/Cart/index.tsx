@@ -1,3 +1,5 @@
+'use client'
+
 import Drawer from '@/app/components/Drawer'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -52,7 +54,7 @@ const Cart = () => {
 					<div className="mt-8">
 						<div className="flow-root">
 							<ul role="list" className="-my-6 divide-y divide-gray-200">
-								{cart?.length > 0 ? (
+								{cart?.length ? (
 									cart.map(product => <CartItem key={product.id} product={product} onRemove={handleRemoveProduct} />)
 								) : (
 									<p className="-translate-x-1/2 text-gray-500 absolute top-1/2 left-1/2 ">Your cart is empty</p>

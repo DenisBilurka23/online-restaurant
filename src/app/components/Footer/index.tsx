@@ -1,10 +1,9 @@
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
-import { type FC } from 'react'
 import MotionLink from '@/app/components/MotionLink'
 
-const Footer: FC = () => (
+const Footer = () => (
 	<div className="relative isolate overflow-hidden bg-white/75 opacity pt-14 sm:pt-14 lg:pt-8">
 		<div className="mx-auto max-w-7xl px-6 lg:px-8">
 			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">

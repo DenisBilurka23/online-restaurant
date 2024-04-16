@@ -10,7 +10,7 @@ interface User {
 export const fetchSessionUser = (): User | null => {
 	if (typeof window !== 'undefined') {
 		const userData = localStorage.getItem('user')
-		if (userData !== null && userData !== 'undefined') {
+		if (userData) {
 			return JSON.parse(userData) as User
 		} else {
 			localStorage.clear()

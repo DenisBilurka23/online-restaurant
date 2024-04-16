@@ -1,8 +1,4 @@
-'use client'
-
-import { AnimatePresence } from 'framer-motion'
 import Contact from '@/app/components/Contact'
-import { ToastContainer } from 'react-toastify'
 import { type FC, type ReactNode } from 'react'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
@@ -10,8 +6,7 @@ import Cart from '@/app/components/Cart'
 import ContactButton from '@/app/components/ContactButton'
 
 const MainLayout: FC<{ children: ReactNode }> = ({ children }) => (
-	<AnimatePresence mode="wait">
-		{/* <ToastContainer /> */}
+	<>
 		<div className="w-screen h-auto min-h-[100vh] flex flex-col bg-primary">
 			<Cart />
 			<Contact />
@@ -22,7 +17,7 @@ const MainLayout: FC<{ children: ReactNode }> = ({ children }) => (
 			</main>
 			<ContactButton />
 		</div>
-	</AnimatePresence>
+	</>
 )
 
 export default MainLayout
