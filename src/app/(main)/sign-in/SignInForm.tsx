@@ -2,6 +2,8 @@
 
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
 
 interface Inputs {
 	email: string
@@ -15,18 +17,13 @@ const SignInForm = () => {
 		formState: { errors }
 	} = useForm<Inputs>()
 	const router = useRouter()
-	// const [_, dispatch] = useStateValue()
+	const inputOptions = { emailLength: 10, passwordLength: 5 }
+	const [error, setError] = useState(null)
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
-		try {
-			// make request
-			console.log('data: ', data)
-			router.push('/')
-		} catch (error) {
-			console.error('Error fetching user data: ', error)
-		}
+		const res = await signIn('credentials', { ...data, redirect: false })
+		res.error ? setError('Invalid email or password') : router.push('/')
 	}
-	const inputOptions = { emailLength: 10, passwordLength: 5 }
 
 	return (
 		<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -85,6 +82,7 @@ const SignInForm = () => {
 				>
 					Sign in
 				</button>
+				{error && <span className="text-red-500 text-sm">{error}</span>}
 			</div>
 		</form>
 	)

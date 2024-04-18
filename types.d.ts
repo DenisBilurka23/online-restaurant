@@ -56,5 +56,7 @@ export interface cartItems {
 }
 
 export interface User {
+	phoneNumber: string
 	email: string
+	username: string
 }

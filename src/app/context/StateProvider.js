@@ -2,7 +2,7 @@
 
 import reducer from '@/app/context/reducer'
 import { initialState } from '@/app/context/initialState'
-import React, { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useReducer } from 'react'
 
 export const StateContext = createContext()
 

@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 import { type SubmitHandler, useForm } from 'react-hook-form'
+import { signUp } from '@/app/api/fetch/auth'
+import { useState } from 'react'
 
 interface Inputs {
 	email: string
@@ -22,9 +24,13 @@ const SignUpForm = () => {
 		formState: { errors }
 	} = useForm<Inputs>()
 	const router = useRouter()
+	const [error, setError] = useState(null)
 
-	const onSubmit: SubmitHandler<Inputs> = data => {
-		console.log(data)
+	const onSubmit: SubmitHandler<Inputs> = async data => {
+		const response = await signUp(JSON.stringify(data))
+		if (response.error) {
+			return setError(response.error)
+		}
 		router.push('/sign-in')
 	}
 
@@ -136,6 +142,7 @@ const SignUpForm = () => {
 				>
 					Sign Up
 				</button>
+				{error && <span className="text-red-500 text-sm">{error}</span>}
 			</div>
 		</form>
 	)

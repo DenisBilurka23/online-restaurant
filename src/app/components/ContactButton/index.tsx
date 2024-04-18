@@ -1,6 +1,6 @@
 'use client'
 
-import { useStateValue } from '@/app/context/StateProvider'
+import { useStateValue } from '../../context/StateProvider'
 import { toggleContactForm } from '@/app/context/actionCreators'
 import { IoChatboxEllipsesOutline } from 'react-icons/io5'
 

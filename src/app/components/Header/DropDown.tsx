@@ -4,15 +4,18 @@ import { motion } from 'framer-motion'
 import { FaUserCog } from 'react-icons/fa'
 import { MdLogout } from 'react-icons/md'
 import { useStateValue } from '../../context/StateProvider'
-import { logout } from '../../utils/functions'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { setCart, setUser } from '../../context/actionCreators'
+import { signOut } from 'next-auth/react'
 
 const DropDown = ({ user }: { user: any }) => {
 	const [_, dispatch] = useStateValue()
-	const router = useRouter()
 
-	const handleLogout = async () => await logout(user, dispatch, router)
+	const handleLogout = async () => {
+		dispatch(setUser(null))
+		dispatch(setCart([]))
+		await signOut()
+	}
 
 	return (
 		<motion.div
@@ -22,7 +25,7 @@ const DropDown = ({ user }: { user: any }) => {
 			className="hidden group-hover:flex w-54  bg-gray-50 rounded-lg shadow-xl  flex-col absolute right-0 top-16"
 		>
 			<p className="px-10 py-2 flex items-center gap-3 bg-slate-100 transition-all duration-100 capitalize ease-in-out text-base text-headingColor">
-				{user?.displayName || user?.email}
+				{user.username || user.email}
 			</p>
 			<Link
 				href={'/profile'}

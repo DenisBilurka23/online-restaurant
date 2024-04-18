@@ -3,7 +3,7 @@
 import ContactHeader from './header'
 import Form from './form'
 import Drawer from '@/app/components/Drawer'
-import { useStateValue } from '@/app/context/StateProvider'
+import { useStateValue } from '../../context/StateProvider'
 import { toggleContactForm } from '@/app/context/actionCreators'
 
 const Contact = () => {

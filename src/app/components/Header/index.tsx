@@ -8,19 +8,28 @@ import MobileNav from './mobile-nav'
 import Navigations from './Navigations'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
+import { setUser } from '../../context/actionCreators'
+import { useSession } from 'next-auth/react'
 
 const Header = () => {
-	const [{ user }] = useStateValue()
+	const [{ user }, dispatch] = useStateValue()
+	const { data, status } = useSession()
 	const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
 	const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
 	const toggleMobileDropdown = () => setMobileDropdownOpen(!mobileDropdownOpen)
 	const toggleMobileNav = () => setMobileNavOpen(!mobileNavOpen)
+
+	useEffect(() => {
+		if (data?.user) {
+			dispatch(setUser(data.user))
+		}
+	}, [data?.user, dispatch])
 
 	return (
 		<header className="w-screen fixed z-40 bg-cardOverlay backdrop-blur-md py-1 md:p-3 md:px-4 lg:py-1 lg:px-16">
@@ -29,11 +38,10 @@ const Header = () => {
 				<Link href={'/'}>
 					<motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-2 cursor-pointer">
 						<Image src={LogoImg} alt="Logo" width={80} className="object-cover" />
-						{/* <p className="text-headingColor md:text-lg lg:text-xl font-bold">TorontoSizzle</p> */}
 					</motion.div>
 				</Link>
 				<Navigations />
-				{user ? (
+				{user && (
 					<div className={'group flex items-center gap-3 px-3 py-1 rounded-lg'}>
 						<motion.div whileHover={{ scale: 1.1 }} className=" flex items-center justify-center">
 							<Image
@@ -47,9 +55,8 @@ const Header = () => {
 						</motion.div>
 						<DropDown user={user} />
 					</div>
-				) : (
-					<LoginAction text={'Login'} />
 				)}
+				{!user && status !== 'loading' && <LoginAction text={'Login'} />}
 			</div>
 
 			{/* Mobile */}
