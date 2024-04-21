@@ -1,17 +1,25 @@
+'use client'
+
 import ContactHeader from './header'
 import Form from './form'
-import { motion } from 'framer-motion'
+import Drawer from '@/app/components/Drawer'
+import { useStateValue } from '../../context/StateProvider'
+import { toggleContactForm } from '@/app/context/actionCreators'
+
 const Contact = () => {
+	const [{ showContactForm }, dispatch] = useStateValue()
+	const handleToggleContactForm = (): void => dispatch(toggleContactForm(false))
+
 	return (
-		<motion.div
-			initial={{ opacity: 0, x: 200 }}
-			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, x: 200 }}
-			className={`w-full h-screen md:w-[350px] bg-white md:backdrop-blur-sm flex flex-col z-[101] drop-shadow-xl fixed top-0 left-0`}
+		<Drawer
+			direction="left"
+			show={showContactForm}
+			onClose={handleToggleContactForm}
+			className="w-full h-screen md:w-[350px] bg-white md:backdrop-blur-sm flex flex-col drop-shadow-xl"
 		>
-			<ContactHeader />
+			<ContactHeader onContactClose={handleToggleContactForm} />
 			<Form />
-		</motion.div>
+		</Drawer>
 	)
 }
 

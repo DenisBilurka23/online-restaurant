@@ -4,12 +4,10 @@ import { useRouter } from 'next/navigation'
 
 const CartActions: FC<{ cart: CartProductItem[]; onClose: () => void }> = ({ cart, onClose }) => {
 	const router = useRouter()
-	const cartTotal = useMemo(() => cart.reduce((acc, product) => (acc += product.price * product.quantity), 0), [cart])
+	const cartTotal = useMemo(() => cart.reduce((acc, product) => acc + product.price * product.quantity, 0), [cart])
 
 	const handleCheckout = (): void => {
-		router.push(
-			'https://serverless-payment.netlify.app/'
-		)
+		router.push('https://serverless-payment.netlify.app/')
 	}
 
 	return (
@@ -22,8 +20,9 @@ const CartActions: FC<{ cart: CartProductItem[]; onClose: () => void }> = ({ car
 			<div className="mt-6">
 				<button
 					disabled={cart?.length === 0}
-					className={`flex items-center w-full justify-center rounded-md border border-transparent hover:from-orange-500 hover:to-orange-700 px-6 py-3 text-base font-medium text-white shadow-sm ${cart?.length > 0 ? 'bg-gradient-to-tr from-orange-400 to-orange-600' : 'bg-gray-400'
-						}`}
+					className={`flex items-center w-full justify-center rounded-md border border-transparent hover:from-orange-500 hover:to-orange-700 px-6 py-3 text-base font-medium text-white shadow-sm ${
+						cart?.length > 0 ? 'bg-gradient-to-tr from-orange-400 to-orange-600' : 'bg-gray-400'
+					}`}
 					onClick={handleCheckout}
 				>
 					Checkout

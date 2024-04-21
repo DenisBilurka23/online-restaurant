@@ -1,8 +1,7 @@
-import { type FC } from 'react'
 import Map from '@/app/components/Map'
 import { features } from '@/app/utils/contacts'
 
-const FooterContacts: FC = () => {
+const FooterContacts = () => {
 	return (
 		<div className="w-full bg-white/75 flex justify-center px-4 md:px-6">
 			<div className="w-full pt-20 max-w-2xl flex-col md:flex-row lg:max-w-7xl lg:px-8 flex -mx-4">

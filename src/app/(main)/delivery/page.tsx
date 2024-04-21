@@ -1,11 +1,10 @@
-import { type FunctionComponent } from 'react'
 import Banner from '@/app/components/Banner'
 import BannerImg from '../../../../public/img/delivery.jpg'
 import Title from '@/app/components/Title'
 import { deliveryOptions } from '@/app/utils/delivery'
 import Image from 'next/image'
 
-const Delivery: FunctionComponent = () => {
+const Delivery = () => {
 	return (
 		<div>
 			<Banner img={BannerImg} alt="banner" title="PICKUP / ONLINE DELIVERY" />
