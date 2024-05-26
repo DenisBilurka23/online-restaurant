@@ -25,11 +25,11 @@ const Drawer = ({ direction, children, show, onClose }) => (
 						<Transition.Child
 							as={Fragment}
 							enter="transform transition ease-in-out duration-500 sm:duration-700"
-							enterFrom={`${direction === 'left' ? '-' : ''}translate-x-full`}
+							enterFrom={`${direction === 'left' ? '-translate-x-full' : 'translate-x-full'}`}
 							enterTo="translate-x-0"
 							leave="transform transition ease-in-out duration-500 sm:duration-700"
 							leaveFrom="translate-x-0"
-							leaveTo={`${direction === 'left' ? '-' : ''}translate-x-full`}
+							leaveTo={`${direction === 'left' ? '-translate-x-full' : 'translate-x-full'}`}
 						>
 							<Dialog.Panel className="pointer-events-auto w-screen max-w-md">{children}</Dialog.Panel>
 						</Transition.Child>
