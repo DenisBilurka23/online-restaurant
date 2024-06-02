@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { signUp } from '@/app/api/fetch/auth'
 import { useState } from 'react'
+import Loader from '@/app/components/Loader'
 
 interface Inputs {
 	email: string
@@ -25,9 +26,12 @@ const SignUpForm = () => {
 	} = useForm<Inputs>()
 	const router = useRouter()
 	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
+		setLoading(true)
 		const response = await signUp(JSON.stringify(data))
+		setLoading(false)
 		if (response.error) {
 			return setError(response.error)
 		}
@@ -63,28 +67,6 @@ const SignUpForm = () => {
 			</div>
 
 			<div>
-				<label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-					Username
-				</label>
-				<div className="mt-2">
-					<input
-						{...register<keyof Inputs>('username', {
-							required: 'Username is required',
-							minLength: {
-								value: inputOptions.usernameLength,
-								message: `Username must be at least ${inputOptions.usernameLength} characters long`
-							}
-						})}
-						name="username"
-						className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-							errors.username ? 'ring-red-500' : 'ring-gray-300'
-						} placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
-					/>
-					{errors.username && <span className="text-red-500 text-sm">{errors.username.message}</span>}
-				</div>
-			</div>
-
-			<div>
 				<label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900">
 					Contact Number
 				</label>
@@ -92,9 +74,9 @@ const SignUpForm = () => {
 					<input
 						{...register<keyof Inputs>('phoneNumber', {
 							required: 'Phone number is required',
-							pattern: {
-								value: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
-								message: 'Invalid phone number format'
+							minLength: {
+								value: 10,
+								message: 'Invalid phone number'
 							}
 						})}
 						name="phoneNumber"
@@ -103,9 +85,6 @@ const SignUpForm = () => {
 							errors.phoneNumber ? 'ring-red-500' : 'ring-gray-300'
 						} placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
 					/>
-					<div>
-						<small className="text-gray-500">Format: 123-456-7890</small>
-					</div>
 					{errors.phoneNumber && <span className="text-red-500 text-sm">{errors.phoneNumber.message}</span>}
 				</div>
 			</div>
@@ -137,11 +116,15 @@ const SignUpForm = () => {
 
 			<div>
 				<button
+					disabled={loading}
 					type="submit"
-					className="flex w-full justify-center rounded-md bg-mild px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+					className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+						loading ? 'bg-gray-400' : 'bg-mild'
+					}`}
 				>
 					Sign Up
 				</button>
+				{loading && <Loader />}
 				{error && <span className="text-red-500 text-sm">{error}</span>}
 			</div>
 		</form>

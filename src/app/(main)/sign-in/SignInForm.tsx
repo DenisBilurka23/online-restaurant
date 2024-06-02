@@ -19,9 +19,12 @@ const SignInForm = () => {
 	const router = useRouter()
 	const inputOptions = { emailLength: 10, passwordLength: 5 }
 	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
+		setLoading(true)
 		const res = await signIn('credentials', { ...data, redirect: false })
+		setLoading(false)
 		res.error ? setError('Invalid email or password') : router.push('/')
 	}
 
@@ -78,7 +81,9 @@ const SignInForm = () => {
 			<div>
 				<button
 					type="submit"
-					className="flex w-full justify-center rounded-md bg-mild px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+					className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+						loading ? 'bg-gray-400' : 'bg-mild'
+					}`}
 				>
 					Sign in
 				</button>
