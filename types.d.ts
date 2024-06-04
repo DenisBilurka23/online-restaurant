@@ -56,7 +56,16 @@ export interface cartItems {
 }
 
 export interface User {
+	id: string
 	phoneNumber: string
 	email: string
-	username: string
+	password: string
+	name?: string
+	fullName?: string
+	streetAddress?: string
+	apt?: string
+	city?: string
+	postalCode?: string
+	createdAt: Date
+	updatedAt: Date
 }

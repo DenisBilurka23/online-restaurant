@@ -4,6 +4,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
+import Loader from '@/app/components/Loader'
 
 interface Inputs {
 	email: string
@@ -87,6 +88,7 @@ const SignInForm = () => {
 				>
 					Sign in
 				</button>
+				{loading && <Loader />}
 				{error && <span className="text-red-500 text-sm">{error}</span>}
 			</div>
 		</form>

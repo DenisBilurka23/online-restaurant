@@ -23,13 +23,23 @@ const authOptions = {
 	callbacks: {
 		jwt: async ({ token, user }) => {
 			if (user) {
-				token.phoneNumber = user.phoneNumber
-				token.username = user.username
+				token.sub = user.id
 			}
 			return token
 		},
-		session: async ({ session, token: { username, phoneNumber } }) => {
-			session.user = { ...session.user, username, phoneNumber }
+		session: async ({ session, token }) => {
+			const user = await UserModel.findById(token.sub)
+			const userDto = {
+				phoneNumber: user?.phoneNumber,
+				email: user?.email,
+				name: user?.name,
+				fullName: user?.fullName,
+				streetAddress: user?.streetAddress,
+				apt: user?.apt,
+				city: user?.city,
+				postalCode: user?.postalCode
+			}
+			session.user = { ...userDto, id: token.sub }
 			return session
 		}
 	},

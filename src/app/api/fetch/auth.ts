@@ -6,3 +6,9 @@ export const signUp: (payload) => Promise<any> = async payload => {
 	const data: User = await response.json()
 	return data
 }
+
+export const userUpdate: (payload) => Promise<any> = async payload => {
+	const response = await REQUEST('api/user/update', payload, { method: 'PUT' })
+	const data: User = await response.json()
+	return data
+}
