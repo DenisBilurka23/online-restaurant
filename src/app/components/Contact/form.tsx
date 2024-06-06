@@ -18,7 +18,7 @@ const Form = () => {
 		})
 	}
 	return (
-		<div className="h-full w-full flex items-center flex-col justify-center px-4 bg-primary">
+		<div className="h-full w-full flex items-center flex-col px-4 bg-primary">
 			<Image src={EmptyCartImg} alt="Empty cart" className="w-[30%] h-[30%]" />
 			<form action="#" className="mb-6 w-full flex itemx-center justify-center gap-y-3 flex-col">
 				<div className="mb-6">
@@ -56,7 +56,7 @@ const Form = () => {
 				</div>
 				<div className="mb-6">
 					<textarea
-						className="form-control block w-full min-h-[25vh] px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+						className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
 						placeholder="Message"
 						value={message}
 						onChange={e => {
@@ -73,13 +73,13 @@ const Form = () => {
 				</button>
 			</form>
 			<p className="mb-2 cursor-pointer text-sm text-gray-500 dark:text-gray-400">
-				<a href="mailto:bentilshadrack72@gmail.com" className="hover:underline">
-					bentilshadrack72@gmail.com
+				<a href="mailto:toronto-sizzle@gmail.com" className="hover:underline">
+					toronto-sizzle@gmail.com
 				</a>
 			</p>
 			<p className="text-sm cursor-pointer text-gray-500 dark:text-gray-400">
-				<a href="tel:+233556844331" className="hover:underline">
-					+233 55 684 4331
+				<a href="tel:+1111111111" className="hover:underline">
+					+111-111-11-11
 				</a>
 			</p>
 		</div>

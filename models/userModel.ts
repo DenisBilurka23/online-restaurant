@@ -9,7 +9,8 @@ const userSchema = new Schema(
 		streetAddress: { type: String },
 		apt: { type: String },
 		city: { type: String },
-		postalCode: { type: String }
+		postalCode: { type: String },
+		profilePhoto: { type: String }
 	},
 	{ timestamps: true }
 )

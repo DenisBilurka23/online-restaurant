@@ -37,7 +37,8 @@ const authOptions = {
 				streetAddress: user?.streetAddress,
 				apt: user?.apt,
 				city: user?.city,
-				postalCode: user?.postalCode
+				postalCode: user?.postalCode,
+				profilePhoto: user?.profilePhoto
 			}
 			session.user = { ...userDto, id: token.sub }
 			return session

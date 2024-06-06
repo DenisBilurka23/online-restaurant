@@ -10,6 +10,7 @@ import { useStateValue } from '@/app/context/StateProvider'
 import { userUpdate } from '@/app/api/fetch/auth'
 import Alert from '@/app/components/Alert'
 import Loader from '@/app/components/Loader'
+import { useEdgeStore } from '@/app/providers/EdgeStoreProvider'
 
 interface Inputs {
 	name: string
@@ -22,7 +23,7 @@ interface Inputs {
 }
 
 const UpdateProfile = () => {
-	const [state] = useStateValue()
+	const [{ user }] = useStateValue()
 	const {
 		register,
 		handleSubmit,
@@ -31,12 +32,12 @@ const UpdateProfile = () => {
 		formState: { errors }
 	} = useForm<Inputs>({
 		defaultValues: {
-			name: state.user?.name || '',
-			phoneNumber: state.user?.phoneNumber || '',
-			streetAddress: state.user?.streetAddress || '',
-			apt: state.user?.apt || '',
-			city: state.user?.city || '',
-			postalCode: state.user?.postalCode || ''
+			name: user?.name || '',
+			phoneNumber: user?.phoneNumber || '',
+			streetAddress: user?.streetAddress || '',
+			apt: user?.apt || '',
+			city: user?.city || '',
+			postalCode: user?.postalCode || ''
 		}
 	})
 	const [alertVisible, setAlertVisible] = useState(false)
@@ -44,36 +45,60 @@ const UpdateProfile = () => {
 	const [error, setError] = useState(false)
 	const inputOptions = { name: 5, phoneNumberLength: 10 }
 	const watchFile = watch('profilePhoto')
+	const { edgestore } = useEdgeStore()
 	const [file, setFile] = useState(null)
 
 	useEffect(() => {
-		if (state.user) {
-			setValue('name', state.user.name || '')
-			setValue('phoneNumber', state.user.phoneNumber || '')
-			setValue('streetAddress', state.user.streetAddress || '')
-			setValue('apt', state.user.apt || '')
-			setValue('city', state.user.city || '')
-			setValue('postalCode', state.user.postalCode || '')
+		if (user) {
+			Object.entries(user).forEach(([key, value]) => {
+				if (key !== 'id') {
+					setValue(key, value)
+				}
+			})
 		}
-	}, [state.user, setValue])
-
-	console.log('state: ', state)
+	}, [user, setValue])
 
 	useEffect(() => {
 		const selectedFile = watchFile ? watchFile[0] : null
-		if (selectedFile) {
+		if (selectedFile && typeof selectedFile !== 'string') {
 			const reader = new FileReader()
 			reader.onload = () => setFile(selectedFile)
 			reader.readAsDataURL(selectedFile)
 		}
 	}, [watchFile])
 
+	useEffect(() => {
+		if (user?.profilePhoto) {
+			setFile(user?.profilePhoto)
+		}
+	}, [user?.profilePhoto])
+
 	const deleteImage = () => setFile(null)
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
 		setLoading(true)
-		console.log('data: ', data)
-		const response = await userUpdate(JSON.stringify({ ...data, email: state.user.email }))
+		let uploadedFile
+		const fileSelected = file && typeof file !== 'string'
+		if (fileSelected) {
+			const res = await edgestore.publicFiles.upload({
+				file,
+				options: {
+					...(user.profilePhoto && { replaceTargetUrl: user.profilePhoto })
+				}
+			})
+			uploadedFile = res.url
+		}
+		// if (!fileSelected && user.profilePhoto) {
+		// 	await edgestore.publicFiles.delete({ url: user.profilePhoto })
+		// }
+
+		const response = await userUpdate(
+			JSON.stringify({
+				...data,
+				email: user?.email,
+				profilePhoto: uploadedFile
+			})
+		)
 		setLoading(false)
 		response.error ? setError(response.error) : setAlertVisible(true)
 	}
@@ -135,7 +160,7 @@ const UpdateProfile = () => {
 						className="h-full w-full bg-transparent pl-2 text-textColor outline-none border-none placeholder:text-gray-400"
 					/>
 				</div>
-				<div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-[225px] md:h-[420px] round-lg">
+				<div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-[225px] md:h-[350px] round-lg">
 					{file ? (
 						<>
 							<div className="relative h-full">
@@ -143,7 +168,7 @@ const UpdateProfile = () => {
 									className="max-w-max max-h-full"
 									width={500}
 									height={500}
-									src={URL.createObjectURL(file)}
+									src={typeof file === 'string' ? file : URL.createObjectURL(file)}
 									alt="profile picture"
 								/>
 								<motion.button

@@ -8,7 +8,7 @@ import MobileNav from './mobile-nav'
 import Navigations from './Navigations'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -19,11 +19,15 @@ import { useSession } from 'next-auth/react'
 const Header = () => {
 	const [{ user }, dispatch] = useStateValue()
 	const { data, status } = useSession()
+	const [dropdownOpen, setDropdownOpen] = useState(false)
 	const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
 	const [mobileNavOpen, setMobileNavOpen] = useState(false)
+	const anchorRefDesktop = useRef()
+	const anchorRefMobile = useRef()
 
 	const toggleMobileDropdown = () => setMobileDropdownOpen(!mobileDropdownOpen)
 	const toggleMobileNav = () => setMobileNavOpen(!mobileNavOpen)
+	const toggleDropdownOpen = () => setDropdownOpen(prev => !prev)
 
 	useEffect(() => {
 		if (data?.user) {
@@ -43,20 +47,27 @@ const Header = () => {
 				<Navigations />
 				{user && (
 					<div className={'group flex items-center gap-3 px-3 py-1 rounded-lg'}>
-						<motion.div whileHover={{ scale: 1.1 }} className=" flex items-center justify-center">
+						<motion.div
+							ref={anchorRefDesktop}
+							onClick={toggleDropdownOpen}
+							whileHover={{ scale: 1.1 }}
+							className=" flex items-center justify-center"
+						>
 							<Image
-								src={user.photoURL || Avatar}
-								className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-contain"
+								src={user.profilePhoto || Avatar}
+								className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-cover"
 								alt="profile"
+								width={100}
+								height={100}
 							/>
 							<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
 								<RiArrowDropDownLine />
 							</p>
 						</motion.div>
-						<DropDown user={user} />
+						{dropdownOpen && <DropDown anchorRef={anchorRefDesktop} user={user} onClose={toggleDropdownOpen} />}
 					</div>
 				)}
-				{!user && status !== 'loading' && <LoginAction text={'Login'} />}
+				{!user && <LoginAction text={'Login'} />}
 			</div>
 
 			{/* Mobile */}
@@ -87,15 +98,20 @@ const Header = () => {
 							<div className={'flex items-center gap-3 px-3 py-1 rounded-lg relative'}>
 								<motion.div whileHover={{ scale: 1.1 }} className="group flex items-center justify-center">
 									<Image
-										src={user?.photoURL ? user.photoURL : Avatar}
-										className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer"
+										src={user.profilePhoto || Avatar}
+										className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl object-cover rounded-full cursor-pointer"
 										alt="user-profile"
 										onClick={toggleMobileDropdown}
+										ref={anchorRefMobile}
+										width={100}
+										height={100}
 									/>
 									<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
 										<RiArrowDropDownLine />
 									</p>
-									{mobileDropdownOpen && <DropDown user={user} />}
+									{mobileDropdownOpen && (
+										<DropDown onClose={toggleMobileDropdown} anchorRef={anchorRefMobile} user={user} />
+									)}
 								</motion.div>
 							</div>
 						) : (
