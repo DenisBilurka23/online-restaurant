@@ -6,7 +6,7 @@ import MotionLink from '@/app/components/MotionLink'
 const Footer = () => (
 	<div className="relative isolate overflow-hidden bg-white/75 opacity pt-14 sm:pt-14 lg:pt-8">
 		<div className="mx-auto max-w-7xl px-6 lg:px-8">
-			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 lg:max-w-none lg:grid-cols-2">
 				<div className="max-w-xl lg:max-w-lg">
 					<Image src={LogoImg} alt="Logo" width={150} height={150} />
 					<p className="mt-0 text-sm leading-8 text-gray-800">
