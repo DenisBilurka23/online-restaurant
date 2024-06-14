@@ -8,7 +8,7 @@ const privatePages = ['/profile']
 const intlMiddleware = createIntlMiddleware({
 	locales,
 	localePrefix: 'always',
-	defaultLocale: 'ru'
+	defaultLocale: 'en'
 })
 
 const authMiddleware = withAuth(
