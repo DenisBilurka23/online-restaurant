@@ -1,11 +1,10 @@
-'use client'
-
 import { MdShoppingBasket } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import { type FC, useEffect, useState } from 'react'
 import { toggleCart } from '@/app/context/actionCreators'
+import { useTranslations } from 'use-intl'
 
 interface PropTypes {
 	direction?: string
@@ -14,6 +13,7 @@ interface PropTypes {
 const Navigations: FC<PropTypes> = ({ direction }) => {
 	const [{ cart }, dispatch] = useStateValue()
 	const [cartItemsCount, setCartItemsCount] = useState<number>(0)
+	const localeText = useTranslations('header')
 
 	const handleOpenCart = (): void => {
 		dispatch(toggleCart(true))
@@ -36,26 +36,26 @@ const Navigations: FC<PropTypes> = ({ direction }) => {
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/'}>Home</Link>
+					<Link href={'/'}>{localeText('home')}</Link>
 				</motion.li>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/menu'}>Menu</Link>
+					<Link href={'/menu'}>{localeText('menu')}</Link>
 				</motion.li>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/delivery'}>Delivery</Link>
+					<Link href={'/delivery'}>{localeText('delivery')}</Link>
 				</motion.li>
 
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/contact'}>Contact</Link>
+					<Link href={'/contact'}>{localeText('contact')}</Link>
 				</motion.li>
 				<motion.li
 					onClick={handleOpenCart}

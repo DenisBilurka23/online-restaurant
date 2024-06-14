@@ -5,10 +5,10 @@ import { Dialog } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import CartItem from '@/app/components/Cart/CartItem'
 import CartActions from '@/app/components/Cart/CartActions'
-import { useStateValue } from '../../context/StateProvider'
 import { setCart, toggleCart } from '@/app/context/actionCreators'
 import { useEffect } from 'react'
 import { type cartItems } from '../../../../types'
+import { useStateValue } from '@/app/context/StateProvider'
 
 const Cart = () => {
 	const [{ showCart, cart }, dispatch] = useStateValue()

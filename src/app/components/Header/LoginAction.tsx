@@ -6,7 +6,7 @@ const LoginAction = ({ text, mobile }: { text?: string; mobile?: boolean }) => {
 	return (
 		<Link href="/sign-in">
 			<motion.div
-				className={` flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`}
+				className={'flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer'}
 				whileTap={{ scale: 0.8 }}
 				whileHover={{ scale: 1.1 }}
 			>

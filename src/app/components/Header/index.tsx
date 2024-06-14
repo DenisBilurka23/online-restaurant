@@ -15,15 +15,18 @@ import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import { setUser } from '../../context/actionCreators'
 import { useSession } from 'next-auth/react'
+import LanguageSelector from '@/app/components/LanguageSelector'
+import { useTranslations } from 'use-intl'
 
 const Header = () => {
 	const [{ user }, dispatch] = useStateValue()
-	const { data, status } = useSession()
+	const { data } = useSession()
 	const [dropdownOpen, setDropdownOpen] = useState(false)
 	const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
 	const [mobileNavOpen, setMobileNavOpen] = useState(false)
 	const anchorRefDesktop = useRef()
 	const anchorRefMobile = useRef()
+	const localeText = useTranslations('header')
 
 	const toggleMobileDropdown = () => setMobileDropdownOpen(!mobileDropdownOpen)
 	const toggleMobileNav = () => setMobileNavOpen(!mobileNavOpen)
@@ -45,29 +48,32 @@ const Header = () => {
 					</motion.div>
 				</Link>
 				<Navigations />
-				{user && (
-					<div className={'group flex items-center gap-3 px-3 py-1 rounded-lg'}>
-						<motion.div
-							ref={anchorRefDesktop}
-							onClick={toggleDropdownOpen}
-							whileHover={{ scale: 1.1 }}
-							className=" flex items-center justify-center"
-						>
-							<Image
-								src={user.profilePhoto || Avatar}
-								className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-cover"
-								alt="profile"
-								width={100}
-								height={100}
-							/>
-							<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
-								<RiArrowDropDownLine />
-							</p>
-						</motion.div>
-						{dropdownOpen && <DropDown anchorRef={anchorRefDesktop} user={user} onClose={toggleDropdownOpen} />}
-					</div>
-				)}
-				{!user && <LoginAction text={'Login'} />}
+				<div className="relative">
+					<LanguageSelector />
+					{user && (
+						<div className={'group flex items-center gap-3 px-3 py-1 rounded-lg'}>
+							<motion.div
+								ref={anchorRefDesktop}
+								onClick={toggleDropdownOpen}
+								whileHover={{ scale: 1.1 }}
+								className=" flex items-center justify-center"
+							>
+								<Image
+									src={user.profilePhoto || Avatar}
+									className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-cover"
+									alt="profile"
+									width={100}
+									height={100}
+								/>
+								<p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
+									<RiArrowDropDownLine />
+								</p>
+							</motion.div>
+							{dropdownOpen && <DropDown anchorRef={anchorRefDesktop} user={user} onClose={toggleDropdownOpen} />}
+						</div>
+					)}
+					{!user && <LoginAction text={localeText('login')} />}
+				</div>
 			</div>
 
 			{/* Mobile */}

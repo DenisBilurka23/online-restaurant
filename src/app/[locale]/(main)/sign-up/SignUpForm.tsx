@@ -5,6 +5,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form'
 import { signUp } from '@/app/api/fetch/auth'
 import { useState } from 'react'
 import Loader from '@/app/components/Loader'
+import { useTranslations } from 'use-intl'
 
 interface Inputs {
 	email: string
@@ -27,6 +28,7 @@ const SignUpForm = () => {
 	const router = useRouter()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
+	const localeText = useTranslations('auth')
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
 		setLoading(true)
@@ -42,7 +44,7 @@ const SignUpForm = () => {
 		<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 			<div>
 				<label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-					Email address
+					{localeText('email')}
 				</label>
 				<div className="mt-2">
 					<input
@@ -65,10 +67,9 @@ const SignUpForm = () => {
 					{errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
 				</div>
 			</div>
-
 			<div>
 				<label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900">
-					Contact Number
+					{localeText('phone')}
 				</label>
 				<div className="mt-2">
 					<input
@@ -92,7 +93,7 @@ const SignUpForm = () => {
 			<div>
 				<div className="flex items-center justify-between">
 					<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-						Password
+						{localeText('password')}
 					</label>
 				</div>
 				<div className="mt-2">
@@ -122,7 +123,7 @@ const SignUpForm = () => {
 						loading ? 'bg-gray-400' : 'bg-mild'
 					}`}
 				>
-					Sign Up
+					{localeText('signUp')}
 				</button>
 				{loading && <Loader />}
 				{error && <span className="text-red-500 text-sm">{error}</span>}

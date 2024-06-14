@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import Loader from '@/app/components/Loader'
+import { useTranslations } from 'use-intl'
 
 interface Inputs {
 	email: string
@@ -21,6 +22,7 @@ const SignInForm = () => {
 	const inputOptions = { emailLength: 10, passwordLength: 5 }
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
+	const localeText = useTranslations('auth')
 
 	const onSubmit: SubmitHandler<Inputs> = async data => {
 		setLoading(true)
@@ -33,7 +35,7 @@ const SignInForm = () => {
 		<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 			<div>
 				<label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-					Email address
+					{localeText('email')}
 				</label>
 				<div className="mt-2">
 					<input
@@ -53,11 +55,10 @@ const SignInForm = () => {
 					{errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
 				</div>
 			</div>
-
 			<div>
 				<div className="flex items-center justify-between">
 					<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-						Password
+						{localeText('password')}
 					</label>
 				</div>
 				<div className="mt-2">
@@ -86,7 +87,7 @@ const SignInForm = () => {
 						loading ? 'bg-gray-400' : 'bg-mild'
 					}`}
 				>
-					Sign in
+					{localeText('signIn')}
 				</button>
 				{loading && <Loader />}
 				{error && <span className="text-red-500 text-sm">{error}</span>}

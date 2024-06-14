@@ -8,10 +8,12 @@ import { useStateValue } from '../../context/StateProvider'
 import Link from 'next/link'
 import { setCart, setUser } from '../../context/actionCreators'
 import { signOut } from 'next-auth/react'
+import { useTranslations } from 'use-intl'
 
 const DropDown = ({ user, onClose, anchorRef }: { user: any; onClose: () => void }) => {
 	const [_, dispatch] = useStateValue()
 	const dropdownRef = useRef<HTMLDivElement>(null)
+	const localeText = useTranslations('dropdown')
 
 	const handleLogout = async () => {
 		dispatch(setUser(null))
@@ -53,21 +55,20 @@ const DropDown = ({ user, onClose, anchorRef }: { user: any; onClose: () => void
 				href={'/profile'}
 				className="px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-headingColor"
 			>
-				Profile <FaUserCog />
+				{localeText('profile')} <FaUserCog />
 			</Link>
 			<Link
 				onClick={onClose}
 				href={'/orders'}
 				className="px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-headingColor"
 			>
-				Orders <FaUtensils />
+				{localeText('orders')} <FaUtensils />
 			</Link>
 			<p
 				className="cursor-pointer px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-textColor"
 				onClick={handleLogout}
 			>
-				Logout
-				<MdLogout />
+				{localeText('logout')} <MdLogout />
 			</p>
 		</motion.div>
 	)
