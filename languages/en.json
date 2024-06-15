@@ -26,7 +26,8 @@
     "signUp": "Sign up",
     "email": "Email address",
     "password": "Password",
-    "phone": "Contact Number"
+    "phone": "Contact Number",
+    "signIn": "Войти"
   },
   "footer": {
     "quickLinks": "Quick Links",
