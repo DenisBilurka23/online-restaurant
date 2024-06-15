@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaUserCog, FaUtensils } from 'react-icons/fa'
 import { MdLogout } from 'react-icons/md'
@@ -9,11 +9,14 @@ import Link from 'next/link'
 import { setCart, setUser } from '../../context/actionCreators'
 import { signOut } from 'next-auth/react'
 import { useTranslations } from 'use-intl'
+import { useParams } from 'next/navigation'
 
 const DropDown = ({ user, onClose, anchorRef }: { user: any; onClose: () => void }) => {
 	const [_, dispatch] = useStateValue()
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const localeText = useTranslations('dropdown')
+	const { locale } = useParams()
+	const currentLocale = Array.isArray(locale) ? locale[0] : locale || 'en'
 
 	const handleLogout = async () => {
 		dispatch(setUser(null))
@@ -22,22 +25,25 @@ const DropDown = ({ user, onClose, anchorRef }: { user: any; onClose: () => void
 		onClose()
 	}
 
-	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			dropdownRef.current &&
-			!dropdownRef.current.contains(event.target as Node) &&
-			!anchorRef?.current?.contains(event.target)
-		) {
-			onClose()
-		}
-	}
+	const handleClickOutside = useCallback(
+		(event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node) &&
+				!anchorRef?.current?.contains(event.target)
+			) {
+				onClose()
+			}
+		},
+		[anchorRef, onClose]
+	)
 
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside)
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
-	}, [])
+	}, [handleClickOutside])
 
 	return (
 		<motion.div
@@ -52,14 +58,14 @@ const DropDown = ({ user, onClose, anchorRef }: { user: any; onClose: () => void
 			</p>
 			<Link
 				onClick={onClose}
-				href={'/profile'}
+				href={`/${currentLocale}/profile`}
 				className="px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-headingColor"
 			>
 				{localeText('profile')} <FaUserCog />
 			</Link>
 			<Link
 				onClick={onClose}
-				href={'/orders'}
+				href={`/${currentLocale}/orders`}
 				className="px-10 py-2 flex items-center gap-3 hover:bg-slate-100 transition-all duration-100 ease-in-out text-base text-headingColor"
 			>
 				{localeText('orders')} <FaUtensils />

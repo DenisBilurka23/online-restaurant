@@ -1,12 +1,17 @@
+'use client'
+
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import Image from 'next/image'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import MotionLink from '@/app/components/MotionLink'
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 const Footer = () => {
 	const localeTextFooter = useTranslations('footer')
 	const localeTextNav = useTranslations('header')
+	const { locale } = useParams()
+	const currentLocale = Array.isArray(locale) ? locale[0] : locale || 'en'
 
 	return (
 		<div className="relative isolate overflow-hidden bg-white/75 opacity pt-14 sm:pt-14 lg:pt-8">
@@ -25,7 +30,7 @@ const Footer = () => {
 							<dd className="mt-0 leading-7 text-gray-400">
 								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									href="/"
+									href={`/${currentLocale}`}
 									className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 								>
 									{localeTextNav('home')}
@@ -34,7 +39,7 @@ const Footer = () => {
 							<dd className="mt-0 leading-7 text-gray-400">
 								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									href="/menu"
+									href={`/${currentLocale}/menu`}
 									className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 								>
 									{localeTextNav('menu')}
@@ -43,17 +48,16 @@ const Footer = () => {
 							<dd className="mt-0 leading-7 text-gray-400">
 								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									href="/contact"
+									href={`/${currentLocale}/contact`}
 									className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 								>
 									{localeTextNav('contact')}
 								</MotionLink>
 							</dd>
-
 							<dd className="mt-0 leading-7 text-gray-400">
 								<MotionLink
 									whileTap={{ scale: 1.1 }}
-									href="/delivery"
+									href={`/${currentLocale}/delivery`}
 									className="text-orange-800 h-10 w-10 rounded-full flex items-center"
 								>
 									{localeTextNav('delivery')}

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { type FC, useEffect, useState } from 'react'
 import { toggleCart } from '@/app/context/actionCreators'
 import { useTranslations } from 'use-intl'
+import { useParams } from 'next/navigation'
 
 interface PropTypes {
 	direction?: string
@@ -14,6 +15,8 @@ const Navigations: FC<PropTypes> = ({ direction }) => {
 	const [{ cart }, dispatch] = useStateValue()
 	const [cartItemsCount, setCartItemsCount] = useState<number>(0)
 	const localeText = useTranslations('header')
+	const { locale } = useParams()
+	const currentLocale = Array.isArray(locale) ? locale[0] : locale || 'en'
 
 	const handleOpenCart = (): void => {
 		dispatch(toggleCart(true))
@@ -36,26 +39,25 @@ const Navigations: FC<PropTypes> = ({ direction }) => {
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/'}>{localeText('home')}</Link>
+					<Link href={`/${currentLocale}`}>{localeText('home')}</Link>
 				</motion.li>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/menu'}>{localeText('menu')}</Link>
+					<Link href={`/${currentLocale}/menu`}>{localeText('menu')}</Link>
 				</motion.li>
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/delivery'}>{localeText('delivery')}</Link>
+					<Link href={`/${currentLocale}/delivery`}>{localeText('delivery')}</Link>
 				</motion.li>
-
 				<motion.li
 					whileHover={{ scale: 1.1 }}
 					className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
 				>
-					<Link href={'/contact'}>{localeText('contact')}</Link>
+					<Link href={`/${currentLocale}/contact`}>{localeText('contact')}</Link>
 				</motion.li>
 				<motion.li
 					onClick={handleOpenCart}

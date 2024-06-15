@@ -4,7 +4,6 @@ import { type FC } from 'react'
 import LogoImg from '../../../../public/img/torontoSizzle_transparent.png'
 import { getCategories } from '@/app/api/fetch/categories'
 
-
 interface Props {
 	categoryId: string
 	baseUrl: string

@@ -11,7 +11,7 @@
   },
   "dropdown": {
     "profile": "Profile",
-    "orders": "Orders",
+    "": "",
     "logout": "Logout"
   },
   "notFound": {
